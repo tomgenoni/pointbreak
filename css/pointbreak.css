@@ -13,25 +13,81 @@ body {
   opacity: .8;
 }
 
+#toolbar {
+  display: flex;
+  position: fixed;
+  left: 180px;
+  right: 0;
+  padding: 5px 10px;
+  border-bottom: 1px solid #ddd;
+  background: #f2f2f2;
+}
+
+#toolbar #url {
+  flex: 1;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
+#toolbar .tool {
+  display: flex;
+  color: #666;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+#content {
+  position: absolute;
+  top: 60px;
+  left: 200px;
+  background: red;
+  width: 10px;
+  height: 10px;
+}
+
 #sidebar {
   background: #323741;
   color: #fff;
-  border-right: 1px solid #eee;
-  width: 200px;
+  width: 180px;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#add-new {
+  margin-top: auto;
+  text-align: center;
+  padding: 15px 0;
+  line-height: 1;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#add-new .fa {
+  opacity: .5;
+  transition: opacity 200ms;
+}
+
+#add-new:hover .fa {
+  opacity: .8;
+  transition: opacity 200ms;
 }
 
 .sizes__item {
   display: flex;
+  padding: 10px 15px;
   border-top: 1px solid #3d424c;
   border-bottom: 1px solid #3d424c;
-  padding: 10px 15px;
   margin-top: -1px;
   cursor: row-resize;
   transition: background 200ms;
+  font-size: 12px;
 }
 
 .sizes__item:hover {
@@ -47,7 +103,6 @@ body {
   flex: 1;
 }
 
-
 .sizes__item .fa-bars {
   margin-right: 10px;
   opacity: .3;
@@ -57,16 +112,12 @@ body {
   opacity: .3;
 }
 
-.sizes__item .fa-times {
-  opacity: 0;
-}
-
-.sizes__item .fa-times {
+.sizes__item .delete {
   opacity: 0;
   cursor: pointer;
 }
 
-.sizes__item:hover .fa-times {
+.sizes__item:hover .delete {
   opacity: .5;
   transition: opacity 200ms;
 }

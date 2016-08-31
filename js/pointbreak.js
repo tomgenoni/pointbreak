@@ -15,6 +15,7 @@ var pointbreakPrefs = {
 // Listeners
 
 window.addEventListener('load', init);
+sizesList.addEventListener('click', editItem);
 
 
 // Drag and drop
@@ -24,6 +25,14 @@ drake.on('drop', reordered);
 
 
 // Functions
+
+function editItem(e) {
+  if (e.target.closest('.delete')){
+    var sizeItem = e.target.closest('.sizes__item');
+    sizesList.removeChild(sizeItem);
+    reordered();
+  }
+}
 
 function init() {
   var prefs = localStorage.getItem('pointbreakPrefs');
@@ -36,12 +45,6 @@ function init() {
 function listPrefs() {
   var url = pointbreakPrefs.url;
   var sizes = pointbreakPrefs.sizes;
-  // var html = '';
-  // sizes.forEach(function(item){
-  //   html += '<div class=sizes__item data-size=' + item + '>' + item + '</div>';
-  // });
-  // sizesList.innerHTML = html;
-  
   var template = Handlebars.compile(tplSizesList.textContent);
   var html = template(sizes);
   sizesList.innerHTML = html;
