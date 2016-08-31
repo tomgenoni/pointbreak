@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/pointbreak.css">
+  <link rel="stylesheet" href="css/dragula.css">
+
+  <script src="https://use.fontawesome.com/50de8192a0.js"></script>
+  
+</head>
+<body>
+  
+  <div id="sidebar">
+    <div id="logo">Pointbreak</div>
+    <div id="sizes"></div>
+  </div>
+
+
+
+  <script id="tplSizesList" type="text/x-handlebars-template">
+    {{#each this}}
+      <div class="sizes__item" data-size={{this}}>
+        <div class="handle">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+        <div class="text">
+          {{this}}
+        </div>
+        <div class="delete">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </div>
+    {{/each}}
+  </script>
+
+  <script src="js/dragula.js"></script>
+  <script src="js/handlebars.min.js"></script>
+  <script src="js/pointbreak.js"></script>
+  
+</body>
+</html>

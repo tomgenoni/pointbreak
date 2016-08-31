@@ -1,0 +1,72 @@
+body {
+  background: #f9f9f9;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont;
+  font-size: 13px;
+  color: #fff;
+}
+
+#logo {
+  margin: 20px 15px;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: .8;
+}
+
+#sidebar {
+  background: #323741;
+  color: #fff;
+  border-right: 1px solid #eee;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.sizes__item {
+  display: flex;
+  border-top: 1px solid #3d424c;
+  border-bottom: 1px solid #3d424c;
+  padding: 10px 15px;
+  margin-top: -1px;
+  cursor: row-resize;
+  transition: background 200ms;
+}
+
+.sizes__item:hover {
+  background: #282d35;
+  transition: background 200ms;
+}
+
+.sizes__item.gu-mirror {
+  background: #282d35;
+}
+
+.sizes__item .text {
+  flex: 1;
+}
+
+
+.sizes__item .fa-bars {
+  margin-right: 10px;
+  opacity: .3;
+}
+.sizes__item .fa-bars {
+  margin-right: 10px;
+  opacity: .3;
+}
+
+.sizes__item .fa-times {
+  opacity: 0;
+}
+
+.sizes__item .fa-times {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sizes__item:hover .fa-times {
+  opacity: .5;
+  transition: opacity 200ms;
+}
