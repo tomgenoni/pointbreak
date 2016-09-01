@@ -7,50 +7,45 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/pointbreak.css">
   <link rel="stylesheet" href="css/dragula.css">
-
-  <script src="https://use.fontawesome.com/50de8192a0.js"></script>
   
 </head>
 <body>
   
-  <div id="toolbar">
-    <div class="tool arrow-left">
-      <i class="fa fa-arrow-left" aria-hidden="true"></i>
-    </div>
-    <div class="tool arrow-right">
-      <i class="fa fa-arrow-right" aria-hidden="true"></i>
-    </div>
-    <div class="tool refresh">
-      <i class="fa fa-refresh" aria-hidden="true"></i>
-    </div>
-    <input id="url" type="text" value="http://atomeye.com">
-  </div>
-  
   <div id="sidebar">
     <div id="logo">Pointbreak</div>
-    <div id="sizes"></div>
+    <div id="viewsList"></div>
     <div id="add-new">
-        <i class="fa fa-plus" aria-hidden="true"></i>
+      <div class="icon icon-plus"></div>
     </div>
   </div>
 
+  <div id="views"></div>
 
-  <div id="content">
-    
-  </div>
-
-  <script id="tplSizesList" type="text/x-handlebars-template">
+  <script id="tplViewsList" type="text/x-handlebars-template">
     {{#each this}}
-      <div class="sizes__item" data-size={{this}} data-id={{@index}}>
-        <div class="handle">
-          <i class="fa fa-bars" aria-hidden="true"></i>
-        </div>
+      <div class="sizes__item" data-id={{id}}>
+        <div class="handle"></div>
         <div class="text">
-          {{this}}
+          <div class="text__size">{{width}}x{{height}}</div>
+          <div class="text__title">{{title}}</div>
         </div>
-        <div class="delete">
-          <i class="fa fa-times" aria-hidden="true"></i>
+        <div class="icon icon-delete"></div>
+      </div>
+    {{/each}}
+  </script>
+
+  <script id="tplViews" type="text/x-handlebars-template">
+    {{#each this}}
+      <div class="view" data-id="{{id}}">
+        <div class="view__tools">
+          <div class="icon icon-delete"></div>
+          <div>
+              <span>{{width}}x{{height}}</span>
+              <span class="view__title">{{title}}</span>
+          </div>
+          <div class="icon icon-delete"></div>
         </div>
+        <div class="webview" style="width:{{width}}px;height:{{height}}px"></div>
       </div>
     {{/each}}
   </script>
