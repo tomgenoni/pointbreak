@@ -13,43 +13,14 @@ body {
   opacity: .8;
 }
 
-#toolbar {
-  display: flex;
-  position: fixed;
-  left: 180px;
-  right: 0;
-  padding: 5px 10px;
-  border-bottom: 1px solid #ddd;
-  background: #f2f2f2;
-}
-
-#toolbar #url {
-  flex: 1;
-  padding: 5px;
-  border-radius: 3px;
-  border: 1px solid #ddd;
-}
-
-#toolbar .tool {
-  display: flex;
-  color: #666;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  font-size: 16px;
-}
-
-#views {
+#view-list {
   position: absolute;
   top: 25px;
   left: 160px;
   display: flex;
 }
 
-.view {
-  /*position: absolute;
-  top: 0;
-  left: 0;*/
+.view-list__item {
   margin-left: 20px;
 }
 
@@ -71,7 +42,6 @@ body {
 }
 
 .webview {
-  height: 500px;
   background: #fff;
   border: 1px solid #ddd;
   border-top: none;
@@ -104,7 +74,7 @@ body {
   transition: background 200ms;
 }
 
-.sizes__item {
+.nav-list__item {
   display: flex;
   align-items: center;
   padding: 10px 15px;
@@ -117,16 +87,16 @@ body {
   line-height: 1.3;
 }
 
-.sizes__item:hover {
+.nav-list__item:hover {
   background: #fff;
   transition: background 200ms;
 }
 
-.sizes__item.gu-mirror {
+.nav-list__item.gu-mirror {
   background: #fff;
 }
 
-.sizes__item .text {
+.nav-list__item .text {
   flex: 1;
 }
 
@@ -151,12 +121,12 @@ body {
   cursor: pointer;
 }
 
-.sizes__item .icon-delete {
+.nav-list__item .icon-delete {
   opacity: 0;
   flex: none;
 }
 
-.sizes__item:hover .icon-delete {
+.nav-list__item:hover .icon-delete {
   opacity: 8;
   transition: opacity 200ms;
 }
@@ -172,4 +142,4 @@ body {
 #add-new:hover .icon-plus {
   opacity: 1;
   transition: opacity 200ms;
-}
+}*/

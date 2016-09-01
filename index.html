@@ -13,40 +13,40 @@
   
   <div id="sidebar">
     <div id="logo">Pointbreak</div>
-    <div id="viewsList"></div>
+    <div id="nav-list"></div>
     <div id="add-new">
       <div class="icon icon-plus"></div>
     </div>
   </div>
 
-  <div id="views"></div>
-
-  <script id="tplViewsList" type="text/x-handlebars-template">
+  <div id="view-list"></div>
+  
+  <script id="tpl-nav-list" type="text/x-handlebars-template">
     {{#each this}}
-      <div class="sizes__item" data-id={{id}}>
-        <div class="handle"></div>
-        <div class="text">
-          <div class="text__size">{{width}}x{{height}}</div>
-          <div class="text__title">{{title}}</div>
+    <div class="nav-list__item" data-id={{id}}>
+      <div class="handle"></div>
+      <div class="text">
+        <div class="text__size">{{width}}x{{height}}</div>
+        <div class="text__title">{{title}}</div>
+      </div>
+      <div class="icon icon-delete"></div>
+    </div>
+    {{/each}}
+  </script>
+  
+  <script id="tpl-view-list" type="text/x-handlebars-template">
+    {{#each this}}
+    <div class="view-list__item" data-id="{{id}}">
+      <div class="view__tools">
+        <div class="icon icon-delete"></div>
+        <div>
+          <span>{{width}}x{{height}}</span>
+          <span class="view__title">{{title}}</span>
         </div>
         <div class="icon icon-delete"></div>
       </div>
-    {{/each}}
-  </script>
-
-  <script id="tplViews" type="text/x-handlebars-template">
-    {{#each this}}
-      <div class="view" data-id="{{id}}">
-        <div class="view__tools">
-          <div class="icon icon-delete"></div>
-          <div>
-              <span>{{width}}x{{height}}</span>
-              <span class="view__title">{{title}}</span>
-          </div>
-          <div class="icon icon-delete"></div>
-        </div>
-        <div class="webview" style="width:{{width}}px;height:{{height}}px"></div>
-      </div>
+      <div class="webview" style="width:{{width}}px;height:{{height}}px"></div>
+    </div>
     {{/each}}
   </script>
 

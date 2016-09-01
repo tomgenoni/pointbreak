@@ -1,12 +1,14 @@
 // Selectors
 
-var viewsList = document.querySelector('#viewsList');
-var views     = document.querySelector('#views');
+var navList       = document.querySelector('#nav-list');
+var viewList      = document.querySelector('#view-list');
 
+var tplNavList    = document.querySelector('#tpl-nav-list');
+var tplViewList   = document.querySelector('#tpl-view-list');
 
 // Variables
 
-var pointbreakPrefs = {
+var pbPrefs = {
   url: 'http://atomeye.com',
   views: [
     {
@@ -34,12 +36,12 @@ var pointbreakPrefs = {
 // Listeners
 
 window.addEventListener('load', init);
-viewsList.addEventListener('click', editItem);
+navList.addEventListener('click', editItem);
 
 
 // Drag and drop
 
-var drake = dragula([viewsList]);
+var drake = dragula([navList]);
 drake.on('drop', reordered);
 
 
@@ -48,32 +50,32 @@ drake.on('drop', reordered);
 function editItem(e) {
   if (e.target.closest('.delete')){
     var sizeItem = e.target.closest('.sizes__item');
-    viewsList.removeChild(sizeItem);
+    navList.removeChild(sizeItem);
     reordered();
   }
 }
 
 function init() {
-  var prefs = localStorage.getItem('pointbreakPrefs');
-  if (prefs != null) {
-    pointbreakPrefs = JSON.parse(prefs);
+  var storedPrefs = localStorage.getItem('pbPrefs');
+  if (storedPrefs != null) {
+    pbPrefs = JSON.parse(storedPrefs);
   }
-  renderViewsList();
-  renderViews();
+  renderNavList();
+  renderViewList();
 }
 
-function renderViewsList() {
-  var data = pointbreakPrefs.views;
-  var template = Handlebars.compile(tplViewsList.textContent);
+function renderNavList() {
+  var data = pbPrefs.views;
+  var template = Handlebars.compile(tplNavList.textContent);
   var html = template(data);
-  viewsList.innerHTML = html;
+  navList.innerHTML = html;
 }
 
-function renderViews() {
-  var data = pointbreakPrefs.views;
-  var template = Handlebars.compile(tplViews.textContent);
+function renderViewList() {
+  var data = pbPrefs.views;
+  var template = Handlebars.compile(tplViewList.textContent);
   var html = template(data);
-  views.innerHTML = html;
+  viewList.innerHTML = html;
 }
 
 function reordered() {
@@ -82,15 +84,31 @@ function reordered() {
 }
 
 function updateViewOrder() {
-  var viewItems = document.querySelectorAll('#viewsList .sizes__item');
-  viewItems.forEach(function(item){
-    console.log(item.dataset.id);
-  })
+  
+  var navListItems  = document.querySelectorAll('#nav-list .nav-list__item');
+  var viewListItems = document.querySelectorAll('#view-list .view-list__item');
+  
+  var viewItemsIDs = [];
+  var newOrder = [];
+  
+  navListItems.forEach(function(item){
+    viewItemsIDs.push(item.dataset.id);
+  });
+      
+  viewListItems.forEach(function(item){
+    var orderNum = viewItemsIDs.indexOf(item.dataset.id);
+    newOrder.push(orderNum);
+  });
+  
+  newOrder.forEach(function(value, index){
+    viewListItems[index].style.order = value;
+  });
+
 }
 
 function save() {
-  var string = JSON.stringify(pointbreakPrefs);
-  localStorage.setItem('pointbreakPrefs', string);
+  var string = JSON.stringify(pbPrefs);
+  localStorage.setItem('pbPrefs', string);
 }
 
 function guid() {
