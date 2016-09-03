@@ -24,6 +24,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  box-shadow: 0 0 6px rgba(0,0,0,.1)
 }
 
 .view__tools {
@@ -35,8 +36,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
+}
+
+.view__tools:hover {
+  background: #fff;
 }
 
 .view__title {
@@ -68,23 +73,23 @@ body {
   line-height: 1;
   cursor: pointer;
   border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   position: relative;
   z-index: 1;
+  background: #f9f9f9;
 }
 
 #btn-open-add-new:hover {
-  background: #f9f9f9;
+  background: #e9e9e9;
   transition: background 200ms;
 }
 
-#btn-open-add-new:hover .icon-plus {
-  opacity: 1;
-  transition: opacity 200ms;
-}
 .add-new-active #btn-open-add-new .icon {
-  background-image: url(../i/close.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
+  transition: transform 200ms;
+  transform: rotate(45deg);
+}
+#btn-open-add-new .icon {
+  transition: transform 200ms;
 }
 
 #nav-list {
@@ -92,7 +97,7 @@ body {
   position: relative;
   z-index: 1;
   background: #f5f5f5;
-  min-height: 300px;
+  min-height: 150px;
   transform: translateY(-128px);
 }
 
@@ -163,7 +168,6 @@ body {
   background-size: 108% auto;
   width: 40px;
   height: 30px;
-  opacity: .5;
 }
 
 #form-add {
@@ -171,9 +175,8 @@ body {
   background: #fff;
   width: 100%;
   display: block;
-  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
-
 
 label {
   font-size: 11px;
@@ -181,12 +184,25 @@ label {
   display: block;
 }
 
-input[type=text] {
+input[type=text],
+input[type=number] {
   display: block;
   width: 100%;
   border: 1px solid #ddd;
   padding: 5px;
   border-radius: 2px;
+}
+
+input[type=text]:focus,
+input[type=number]:focus {
+  border: 1px solid #90b9f9;
+  outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .form-list__item {
@@ -227,9 +243,11 @@ input[type=text] {
   background-color: #4e94ff;
   border: 1px solid #2e7def;
   color: #fff;
+  outline: none;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   transition: background 100ms;
   background: #2e7def;
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Pointbreak</title>
   
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/pointbreak.css">
@@ -20,14 +20,14 @@
       <ul class="form-list">
         <li class="form-list__item split-input">
           <div class="split-input__item">
-            <input type="text" id="add-width" name="add-width" placeholder="width">
+            <input name="add-width" placeholder="width" type="number" pattern='[0-9]{10}'>
           </div>
           <div class="split-input__item">
-            <input type="text" id="add-height" name="add-height" placeholder="height">
+            <input name="add-height" placeholder="height" type="number" pattern='[0-9]{10}'>
           </div>
         </li>
         <li class="form-list__item">
-          <input type="text" id="add-name" name="add-name" placeholder="name">
+          <input type="text" name="add-title" placeholder="name">
         </li>
         <li class="form-list__item">
           <button class="button button--small button--full">Add</button>
@@ -68,8 +68,23 @@
     {{/each}}
   </script>
 
+  <script id="tpl-view-list-single" type="text/x-handlebars-template">
+    <div class="view-list__item" data-id="{{id}}">
+      <div class="view__tools">
+        <div class="icon icon-delete"></div>
+        <div>
+          <span>{{width}}x{{height}}</span>
+          <span class="view__title">{{title}}</span>
+        </div>
+        <div class="icon icon-delete"></div>
+      </div>
+      <div frameborder="0" src="http://atomeye.com" class="webview" style="width:{{width}}px;height:{{height}}px"></div>
+    </div>
+  </script>
+
   <script src="js/dragula.js"></script>
   <script src="js/handlebars.min.js"></script>
+  <script src="js/defaultPrefs.js"></script>
   <script src="js/pointbreak.js"></script>
   
 </body>
