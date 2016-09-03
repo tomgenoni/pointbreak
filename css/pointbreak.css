@@ -1,21 +1,14 @@
 body {
-  background: #fbfbfb;
+  background: url(../i/body.png);
   -webkit-font-smoothing: antialiased;
   font-family: -apple-system, BlinkMacSystemFont;
   font-size: 13px;
   color: #666;
 }
 
-#logo {
-  margin: 10px 15px;
-  font-size: 13px;
-  z-index: 1;
-  position: relative;
-}
-
 #view-list {
   position: absolute;
-  top: 25px;
+  top: 50px;
   left: 180px;
 }
 
@@ -54,12 +47,64 @@ body {
   border-top: none;
 }
 
+#toolbar {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 1;
+}
+
+#toolbar .toolbar__item {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  position: relative;
+}
+
+#toolbar .toolbar__item:first-child {
+  margin-left: 15px;
+  width: 142px;
+}
+
+#toolbar .toolbar__item:last-child {
+  margin-right: 0;
+  flex: 1;
+}
+
+#toolbar input {
+  border: none;
+  padding: 9px;
+  font-size: 13px;
+  border-radius: 0;
+}
+
+#toolbar .reload {
+  margin: 3px;
+  height: 26px;
+  width: 34px;
+  background: url(../i/reload.svg) center center;
+  background-size: 115% auto;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+#toolbar .reload:hover {
+  background-color: #f5f5f5;
+}
+
+
+
 #sidebar {
   background: #f5f5f5;
   width: 160px;
   position: fixed;
   z-index: 1;
-  top: 0;
+  top: 34px;
   left: 0;
   bottom: 0;
   display: flex;
@@ -165,6 +210,7 @@ body {
 
 .icon-plus {
   background-image: url(../i/plus.svg);
+  background-position: center center;
   background-size: 108% auto;
   width: 40px;
   height: 30px;
