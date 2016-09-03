@@ -38,7 +38,8 @@ var pbPrefs = {
 // Listeners
 
 window.addEventListener('load', init);
-navList.addEventListener('click', itemChanged);
+navList.addEventListener('click', itemClicked);
+viewList.addEventListener('click', viewClicked);
 btnOpenAddNew.addEventListener('click', toggleAddNewWindow);
 
 // Functions
@@ -48,28 +49,40 @@ function toggleAddNewWindow() {
   body.classList.toggle("add-new-active");
 }
 
-// TODO: Refactor so delete can come from either the list
-// or a view. pass just the ID.
-function itemChanged(e) {
-  
+
+function itemClicked(e) {
   // If deleting an element
   if (e.target.closest('.icon-delete')) {
     var itemToDelete = e.target.closest('.nav-list__item');
-    navList.removeChild(itemToDelete);
-    
     var deletedID = itemToDelete.dataset.id;
-    var viewToDelete = document.querySelector('#view-list [data-id="'+deletedID+'"]');
-    viewList.removeChild(viewToDelete)
-    
-    pbPrefs.views.forEach(function(item, index){
-      if ( deletedID == item.id ) {
-        pbPrefs.views.splice(index,1);
-      }
-    });
+    deleteItem(deletedID)
   }
+}
+
+function viewClicked(e) {
+  // If deleting an element
+  if (e.target.closest('.icon-delete')) {
+    var itemToDelete = e.target.closest('.view-list__item');
+    var deletedID = itemToDelete.dataset.id;
+    deleteItem(deletedID)
+  }
+}
+
+function deleteItem(deletedID) {
+  var itemToDelete = document.querySelector('#nav-list [data-id="'+deletedID+'"]');
+  var viewToDelete = document.querySelector('#view-list [data-id="'+deletedID+'"]');
+  
+  navList.removeChild(itemToDelete);
+  viewList.removeChild(viewToDelete);
+  
+  pbPrefs.views.forEach(function(item, index){
+    if ( deletedID == item.id ) {
+      pbPrefs.views.splice(index,1);
+    }
+  });
 
   refreshViewOrder();
-  saveLocalStorage();
+  savePreferences();
 }
 
 function refreshViewOrder() {
@@ -83,7 +96,7 @@ function refreshViewOrder() {
   });
 }
 
-function saveLocalStorage() {
+function savePreferences() {
   var navListItems = document.querySelectorAll('#nav-list .nav-list__item');
   pbPrefs.views = [];
 
@@ -96,8 +109,8 @@ function saveLocalStorage() {
       })
   });
     
-  var string = JSON.stringify(pbPrefs);
-  localStorage.setItem('pbPrefs', string);
+  // var string = JSON.stringify(pbPrefs);
+  // localStorage.setItem('pbPrefs', string);
 }
 
 
@@ -146,5 +159,5 @@ function renderViewList(data) {
 var drake = dragula([navList]);
 drake.on('drop', function(){
   refreshViewOrder();
-  saveLocalStorage();
+  savePreferences();
 });
