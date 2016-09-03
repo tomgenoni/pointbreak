@@ -12,11 +12,11 @@ var tplViewList   = document.querySelector('#tpl-view-list');
 // Variables
 
 var pbPrefs = {
-  url: 'http://atomeye.com',
+  urls: [],
   views: [
     {
       id: '32d45cd4-145a-3cf4-ddc1-cc3855ce64f9',
-      title: 'Apple iPhone',
+      title: 'iPhone',
       width: 230,
       height: 400
     },
@@ -48,6 +48,8 @@ function toggleAddNewWindow() {
   body.classList.toggle("add-new-active");
 }
 
+// TODO: Refactor so delete can come from either the list
+// or a view. pass just the ID.
 function itemChanged(e) {
   
   // If deleting an element
@@ -56,7 +58,7 @@ function itemChanged(e) {
     navList.removeChild(itemToDelete);
     
     var deletedID = itemToDelete.dataset.id;
-    var viewToDelete = document.querySelector('[data-view-id="'+deletedID+'"]');
+    var viewToDelete = document.querySelector('#view-list [data-id="'+deletedID+'"]');
     viewList.removeChild(viewToDelete)
     
     pbPrefs.views.forEach(function(item, index){
@@ -75,7 +77,7 @@ function refreshViewOrder() {
   var distance = 0;
     
   navListItems.forEach(function(item){
-    var view = document.querySelector('[data-view-id="'+item.dataset.id+'"]');
+    var view = document.querySelector('#view-list [data-id="'+item.dataset.id+'"]');
     view.style.transform = 'translateX(' + distance + 'px)';
     distance = 20 + distance + parseFloat(item.dataset.width);
   });
@@ -94,8 +96,8 @@ function saveLocalStorage() {
       })
   });
     
-  // var string = JSON.stringify(pbPrefs);
-  // localStorage.setItem('pbPrefs', string);
+  var string = JSON.stringify(pbPrefs);
+  localStorage.setItem('pbPrefs', string);
 }
 
 

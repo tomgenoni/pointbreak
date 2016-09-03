@@ -7,10 +7,8 @@ body {
 }
 
 #logo {
-  margin: 20px 15px;
-  font-weight: 600;
-  font-size: 14px;
-  opacity: .8;
+  margin: 10px 15px;
+  font-size: 13px;
   z-index: 1;
   position: relative;
 }
@@ -61,7 +59,7 @@ body {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #d0d0d0;
+  border-right: 1px solid #ddd;
 }
 
 #btn-open-add-new {
@@ -69,7 +67,7 @@ body {
   justify-content: center;
   line-height: 1;
   cursor: pointer;
-  border-top: 1px solid #d0d0d0;
+  border-top: 1px solid #ddd;
   position: relative;
   z-index: 1;
 }
@@ -95,14 +93,20 @@ body {
   z-index: 1;
   background: #f5f5f5;
   min-height: 300px;
+  transform: translateY(-128px);
+}
+
+.add-new-active #nav-list {
+  transition: transform 200ms;
+  transform: translateY(0);
 }
 
 .nav-list__item {
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  border-top: 1px solid #d0d0d0;
-  border-bottom: 1px solid #d0d0d0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   margin-top: -1px;
   cursor: row-resize;
   transition: background 200ms;
@@ -168,15 +172,8 @@ body {
   width: 100%;
   display: block;
   border-top: 1px solid #ddd;
-  position: absolute;
-  left: 0;
-  top: 85px;
 }
 
-.add-new-active #nav-list {
-  transition: transform 200ms;
-  transform: translatey(128px);
-}
 
 label {
   font-size: 11px;
