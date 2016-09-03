@@ -1,7 +1,10 @@
 // Selectors
 
+var body          = document.querySelector('body');
 var navList       = document.querySelector('#nav-list');
 var viewList      = document.querySelector('#view-list');
+var btnOpenAddNew = document.querySelector('#btn-open-add-new');
+var formAddNew    = document.querySelector('#form-add');
 
 var tplNavList    = document.querySelector('#tpl-nav-list');
 var tplViewList   = document.querySelector('#tpl-view-list');
@@ -32,84 +35,71 @@ var pbPrefs = {
   ]
 }
 
-
 // Listeners
 
 window.addEventListener('load', init);
-navList.addEventListener('click', editItem);
+navList.addEventListener('click', itemChanged);
+btnOpenAddNew.addEventListener('click', toggleAddNewWindow);
 
+// Functions
 
-// Drag and drop
-
-var drake = dragula([navList]);
-drake.on('drop', reordered);
-
-
-//Functions
-
-function editItem(e) {
-  if (e.target.closest('.delete')){
-    var sizeItem = e.target.closest('.sizes__item');
-    navList.removeChild(sizeItem);
-    reordered();
-  }
+function toggleAddNewWindow() {
+  btnOpenAddNew.classList.toggle('is-active');
+  body.classList.toggle("add-new-active");
 }
 
-function init() {
-  var storedPrefs = localStorage.getItem('pbPrefs');
-  if (storedPrefs != null) {
-    pbPrefs = JSON.parse(storedPrefs);
-  }
-  renderNavList();
-  renderViewList();
-}
-
-function renderNavList() {
-  var data = pbPrefs.views;
-  var template = Handlebars.compile(tplNavList.textContent);
-  var html = template(data);
-  navList.innerHTML = html;
-}
-
-function renderViewList() {
-  var data = pbPrefs.views;
-  var template = Handlebars.compile(tplViewList.textContent);
-  var html = template(data);
-  viewList.innerHTML = html;
-}
-
-function reordered() {
-  updateViewOrder();
-  save();
-}
-
-function updateViewOrder() {
+function itemChanged(e) {
   
+  // If deleting an element
+  if (e.target.closest('.icon-delete')) {
+    var itemToDelete = e.target.closest('.nav-list__item');
+    navList.removeChild(itemToDelete);
+    
+    var deletedID = itemToDelete.dataset.id;
+    var viewToDelete = document.querySelector('[data-view-id="'+deletedID+'"]');
+    viewList.removeChild(viewToDelete)
+    
+    pbPrefs.views.forEach(function(item, index){
+      if ( deletedID == item.id ) {
+        pbPrefs.views.splice(index,1);
+      }
+    });
+  }
+
+  refreshViewOrder();
+  saveLocalStorage();
+}
+
+function refreshViewOrder() {
   var navListItems  = document.querySelectorAll('#nav-list .nav-list__item');
-  var viewListItems = document.querySelectorAll('#view-list .view-list__item');
-  
-  var viewItemsIDs = [];
-  var newOrder = [];
-  
+  var distance = 0;
+    
   navListItems.forEach(function(item){
-    viewItemsIDs.push(item.dataset.id);
+    var view = document.querySelector('[data-view-id="'+item.dataset.id+'"]');
+    view.style.transform = 'translateX(' + distance + 'px)';
+    distance = 20 + distance + parseFloat(item.dataset.width);
   });
-      
-  viewListItems.forEach(function(item){
-    var orderNum = viewItemsIDs.indexOf(item.dataset.id);
-    newOrder.push(orderNum);
-  });
-  
-  newOrder.forEach(function(value, index){
-    viewListItems[index].style.order = value;
-  });
-
 }
 
-function save() {
-  var string = JSON.stringify(pbPrefs);
-  localStorage.setItem('pbPrefs', string);
+function saveLocalStorage() {
+  var navListItems = document.querySelectorAll('#nav-list .nav-list__item');
+  pbPrefs.views = [];
+
+  navListItems.forEach(function(el){
+      pbPrefs.views.push({
+        id: el.dataset.id,
+        title: el.dataset.title,
+        width: el.dataset.width,
+        height: el.dataset.height
+      })
+  });
+    
+  // var string = JSON.stringify(pbPrefs);
+  // localStorage.setItem('pbPrefs', string);
 }
+
+
+// Onload and libraries
 
 function guid() {
   function s4() {
@@ -120,3 +110,39 @@ function guid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
     s4() + '-' + s4() + s4() + s4();
 }
+
+function init() {
+  var storedPrefs = localStorage.getItem('pbPrefs');
+  if (storedPrefs != null) {
+    pbPrefs = JSON.parse(storedPrefs);
+  }
+  renderNavList();
+  renderViewList();
+  refreshViewOrder();
+}
+
+function renderNavList(data) {
+  if (!data) {
+    var data = pbPrefs.views;
+  }
+  var template = Handlebars.compile(tplNavList.textContent);
+  var html = template(data);
+  navList.innerHTML = html;
+}
+
+function renderViewList(data) {
+  if (!data) {
+    var data = pbPrefs.views;
+  }
+  var template = Handlebars.compile(tplViewList.textContent);
+  var html = template(data);
+  viewList.innerHTML = html;
+}
+
+// Drag and drop
+
+var drake = dragula([navList]);
+drake.on('drop', function(){
+  refreshViewOrder();
+  saveLocalStorage();
+});

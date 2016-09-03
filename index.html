@@ -13,17 +13,35 @@
   
   <div id="sidebar">
     <div id="logo">Pointbreak</div>
-    <div id="nav-list"></div>
-    <div id="add-new">
+    <div id="btn-open-add-new">
       <div class="icon icon-plus"></div>
     </div>
+    <form id="form-add">
+      <ul class="form-list">
+        <li class="form-list__item split-input">
+          <div class="split-input__item">
+            <input type="text" id="add-width" name="add-width" placeholder="width">
+          </div>
+          <div class="split-input__item">
+            <input type="text" id="add-height" name="add-height" placeholder="height">
+          </div>
+        </li>
+        <li class="form-list__item">
+          <input type="text" id="add-name" name="add-name" placeholder="name">
+        </li>
+        <li class="form-list__item">
+          <button class="button button--small button--full">Add</button>
+        </li>
+      </ul>
+    </form>
+    <div id="nav-list"></div>
   </div>
 
   <div id="view-list"></div>
   
   <script id="tpl-nav-list" type="text/x-handlebars-template">
     {{#each this}}
-    <div class="nav-list__item" data-id={{id}}>
+    <div class="nav-list__item" data-id={{id}} data-title={{title}} data-width={{width}} data-height={{height}}>
       <div class="handle"></div>
       <div class="text">
         <div class="text__size">{{width}}x{{height}}</div>
@@ -36,7 +54,7 @@
   
   <script id="tpl-view-list" type="text/x-handlebars-template">
     {{#each this}}
-    <div class="view-list__item" data-id="{{id}}">
+    <div class="view-list__item" data-view-id="{{id}}">
       <div class="view__tools">
         <div class="icon icon-delete"></div>
         <div>
@@ -45,7 +63,7 @@
         </div>
         <div class="icon icon-delete"></div>
       </div>
-      <div class="webview" style="width:{{width}}px;height:{{height}}px"></div>
+      <div frameborder="0" src="http://atomeye.com" class="webview" style="width:{{width}}px;height:{{height}}px"></div>
     </div>
     {{/each}}
   </script>
