@@ -18,7 +18,7 @@
     </div>
     <form id="form-add">
       <div id="form-add-error">
-        Please add a valid width and height.
+        Please enter a valid width and height.
       </div>
       <ul class="form-list">
         <li class="form-list__item split-input">
@@ -42,9 +42,6 @@
   
   <div id="main">
     <div id="toolbar">
-      <div class="toolbar__item">
-        <button class="button button--small button--clear button--reload"></button>
-      </div>
       <form class="toolbar__item toolbar__input">
         <input type="text" name="url" id="url" placeholder="URL" value="http://cnn.com">
         <button class="button button--small">Load</button>
@@ -58,7 +55,6 @@
   <script id="tpl-nav-list" type="text/x-handlebars-template">
     {{#each this}}
     <div class="nav-list__item" data-id={{id}} data-title={{title}} data-width={{width}} data-height={{height}}>
-      <div class="handle"></div>
       <div class="text">
         <div class="text__size">{{width}}x{{height}}</div>
         <div class="text__title">{{title}}</div>
@@ -73,7 +69,10 @@
     <div class="view-list__item" data-id="{{id}}">
       <div class="view__tools">
         <div>
-          <span>{{width}}x{{height}}</span>
+          <button class="button button--tiny button--clear button--reload"></button>
+        </div>
+        <div>
+          <span class="view__size">{{width}}x{{height}}</span>
           <span class="view__title">{{title}}</span>
         </div>
         <div class="icon icon-delete"></div>

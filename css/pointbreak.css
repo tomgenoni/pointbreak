@@ -29,7 +29,7 @@ body {
 }
 
 .view__tools {
-  padding-bottom: 5px;
+  padding-bottom: 0;
   position: relative;
   display: flex;
   align-items: center;
@@ -38,12 +38,14 @@ body {
   line-height: 1.5;
 }
 
-.view-list__item .icon-delete {
+.view-list__item .icon-delete,
+.view-list__item .button--reload {
   opacity: 0;
   transition: opacity 200ms;
 }
 
-.view-list__item:hover .icon-delete {
+.view-list__item:hover .icon-delete,
+.view-list__item:hover .button--reload {
   opacity: 1;
   transition: opacity 200ms;
 }
@@ -346,28 +348,36 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 0 7px;
 }
 
+.button--tiny {
+  font-size: 10px;
+  font-weight: 400;
+  border-radius: 2px;
+  line-height: 20px;
+  height: 20px;
+  padding: 0 7px;
+}
+
 .button--clear {
   height: 28px;
   background-color: transparent;
-  border: 1px solid transparent;
+  border: none;
 }
 
 .button--clear:hover {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: transparent;
 }
 
 .button--clear:focus {
-  background-color: #ddd;
-  border: 1px solid #ddd;
+  background-color: transparent;
 }
 
 .button--reload {
+  transition: opacity 100ms;
   background-image: url(../i/reload.svg);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 16px 16px;
-  width: 30px;
+  background-size: 14px 14px;
+  width: 26px;
 }
 
 .button--full {
