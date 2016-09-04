@@ -195,7 +195,8 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100px;
+  width: 117px;
+  font-size: 11px;
 }
 
 .icon {
@@ -315,8 +316,8 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 2px;
   height: 34px;
   padding: 0 15px;
-  background-color: #518aad;
-  border: 1px solid #437492;
+  background-color: #3f93f3;
+  border: none;
   color: #fff;
   outline: none;
 }
@@ -324,7 +325,7 @@ input[type=number]::-webkit-outer-spin-button {
 .button:hover,
 .button:focus {
   transition: background-color 100ms;
-  background-color: #437492;
+  background-color: #287ddd;
 }
 
 .button--small {
@@ -347,17 +348,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 .button--clear {
   height: 28px;
-  background-color: transparent;
   border: none;
+  background: none;
 }
 
-.button--clear:hover {
-  background-color: transparent;
-}
-
+.button--clear:hover,
 .button--clear:focus {
-  background-color: transparent;
+  background: none;
 }
+
 
 .button--reload {
   transition: opacity 100ms;

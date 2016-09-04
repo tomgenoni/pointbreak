@@ -41,7 +41,7 @@ function addNewItem(e) {
   inputsToCheck.forEach(function(item, value) {
     if ( item == '' && item != parseInt(item, 10)) {
       formAddError.style.display = 'block';
-      resizeNav();
+      revealAddNew();
       error = true;
       return;
     }
@@ -68,11 +68,11 @@ function addNewItem(e) {
     
     pbPrefs.views.push(newItem);
     
-    renderHandlebars([newItem], tplNavList, navList, 'append');
-    renderHandlebars([newItem], tplViewList, viewList, 'append');
+    renderHandlebars([newItem], tplNavList, navList, 'prepend');
+    renderHandlebars([newItem], tplViewList, viewList, 'prepend');
     
+    revealAddNew();
     refreshViewOrder();
-    resizeNav();
     savePreferences();
   }
 }
@@ -82,10 +82,10 @@ function toggleAddNewWindow() {
   setTimeout(function(){
     formAddError.style.display = 'none';
   }, 200)
-  resizeNav();
+  revealAddNew();
 }
 
-function resizeNav() {
+function revealAddNew() {
   var formHeight = formAddNew.offsetHeight;
   navList.style.transform = 'translateY(' + formHeight + 'px)';
   if ( !body.classList.contains('add-new-active')) {
@@ -176,8 +176,8 @@ function init() {
 function renderHandlebars(data, template, target, type) {
   var template = Handlebars.compile(template.textContent);
   var html = template(data);
-  if (type !== null && type == 'append') {
-    target.innerHTML = target.innerHTML + html;
+  if (type !== null && type == 'prepend') {
+    target.innerHTML = html + target.innerHTML;
   } else {
     target.innerHTML = html;
   }
