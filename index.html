@@ -12,21 +12,23 @@
 <body>
 
   <div id="toolbar">
+    <div class="toolbar__item reload"></div>
     <div class="toolbar__item">
-      Pointbreak
-    </div>
-    <div class="toolbar__item reload">
-    </div>
-    <div class="toolbar__item">
-      <input type="text" name="url" placeholder="name" value="http://cnn.com">
+      <input type="text" name="url" placeholder="URL" value="http://cnn.com">
     </div>
   </div>
   
   <div id="sidebar">
+    <div class="logo">
+      logo
+    </div>
     <div id="btn-open-add-new">
       <div class="icon icon-plus"></div>
     </div>
     <form id="form-add">
+      <div id="form-add-error">
+        Please add a valid width and height.
+      </div>
       <ul class="form-list">
         <li class="form-list__item split-input">
           <div class="split-input__item">
@@ -78,18 +80,6 @@
     {{/each}}
   </script>
 
-  <script id="tpl-view-list-single" type="text/x-handlebars-template">
-    <div class="view-list__item" data-id="{{id}}">
-      <div class="view__tools">
-        <div>
-          <span>{{width}}x{{height}}</span>
-          <span class="view__title">{{title}}</span>
-        </div>
-        <div class="icon icon-delete"></div>
-      </div>
-      <div frameborder="0" src="http://atomeye.com" class="webview" style="width:{{width}}px;height:{{height}}px"></div>
-    </div>
-  </script>
 
   <script src="js/dragula.js"></script>
   <script src="js/handlebars.min.js"></script>

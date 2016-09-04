@@ -5,6 +5,7 @@ var navList       = qs('#nav-list');
 var viewList      = qs('#view-list');
 var btnOpenAddNew = qs('#btn-open-add-new');
 var formAddNew    = qs('#form-add');
+var formAddError  = qs('#form-add-error');
 
 // Form data
 var newWidth      = qsa('#form-add [name="add-width"]');
@@ -29,24 +30,64 @@ formAddNew.addEventListener('submit', addNewItem);
 
 function addNewItem(e) {
   e.preventDefault();
-  var newItem = {
-    id: guid(),
-    title: newTitle[0].value,
-    width: newWidth[0].value,
-    height: newHeight[0].value
-  };
-    
-  pbPrefs.views.push(newItem);
   
-  renderNavList();
-  renderViewSingle(newItem);
-  refreshViewOrder();
-  savePreferences();
+  var error = false;
+  
+  var inputsToCheck = [
+    newWidth[0].value,
+    newHeight[0].value
+  ];
+  
+  inputsToCheck.forEach(function(item, value) {
+    if ( item == '' && item != parseInt(item, 10)) {
+      formAddError.style.display = 'block';
+      resizeNav();
+      error = true;
+      return;
+    }
+  });
+  
+  if ( error != true ) {
+    
+    formAddError.style.display = 'none';
+    
+    if ( newTitle[0].value == '') {
+      newTitle[0].value = 'Custom';
+    }
+    
+    var newItem = {
+      id: guid(),
+      title: newTitle[0].value,
+      width: newWidth[0].value,
+      height: newHeight[0].value
+    };
+    
+    newTitle[0].value = '';
+    newWidth[0].value = '';
+    newHeight[0].value = '';
+    
+    pbPrefs.views.push(newItem);
+    
+    renderHandlebars([newItem], tplNavList, navList, 'append');
+    renderHandlebars([newItem], tplViewList, viewList, 'append');
+    
+    resizeNav();
+    refreshViewOrder();
+    savePreferences();
+  }
 }
 
 function toggleAddNewWindow() {
-  btnOpenAddNew.classList.toggle('is-active');
-  body.classList.toggle("add-new-active");
+  body.classList.toggle('add-new-active');
+  resizeNav();
+}
+
+function resizeNav() {
+  var formHeight = formAddNew.offsetHeight;
+  navList.style.transform = 'translateY(' + formHeight + 'px)';
+  if ( !body.classList.contains('add-new-active')) {
+    navList.style.transform = 'translateY(0)';
+  }
 }
 
 function itemClicked(e) {
@@ -121,30 +162,20 @@ function init() {
   if (storedPrefs != null) {
     pbPrefs = JSON.parse(storedPrefs);
   }
-  renderNavList();
-  renderViewList();
+  renderHandlebars(pbPrefs.views, tplNavList, navList);
+  renderHandlebars(pbPrefs.views, tplViewList, viewList);
   refreshViewOrder();
   savePreferences();
 }
 
-function renderNavList() {
-  var data = pbPrefs.views;
-  var template = Handlebars.compile(tplNavList.textContent);
+function renderHandlebars(data, template, target, type) {
+  var template = Handlebars.compile(template.textContent);
   var html = template(data);
-  navList.innerHTML = html;
-}
-
-function renderViewList() {
-  var data = pbPrefs.views;
-  var template = Handlebars.compile(tplViewList.textContent);
-  var html = template(data);
-  viewList.innerHTML = html;
-}
-
-function renderViewSingle(data) {
-  var template = Handlebars.compile(tplViewListSingle.textContent);
-  var html = template(data);
-  viewList.innerHTML = viewList.innerHTML + html;
+  if (type !== null && type == 'append') {
+    target.innerHTML = target.innerHTML + html;
+  } else {
+    target.innerHTML = html;
+  }
 }
 
 function removeLocalStorage() {
