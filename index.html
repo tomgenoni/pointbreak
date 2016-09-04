@@ -10,6 +10,17 @@
   
 </head>
 <body>
+
+  <div id="toolbar">
+    <div class="toolbar__item">
+      Pointbreak
+    </div>
+    <div class="toolbar__item reload">
+    </div>
+    <div class="toolbar__item">
+      <input type="text" name="url" placeholder="name" value="http://cnn.com">
+    </div>
+  </div>
   
   <div id="sidebar">
     <div id="btn-open-add-new">
@@ -36,16 +47,6 @@
     <div id="nav-list"></div>
   </div>
   
-  <div id="toolbar">
-    <div class="toolbar__item">
-      Pointbreak
-    </div>
-    <div class="toolbar__item reload">
-    </div>
-    <div class="toolbar__item">
-      <input type="text" name="url" placeholder="name" value="http://cnn.com">
-    </div>
-  </div>
 
   <div id="view-list"></div>
   
@@ -66,7 +67,6 @@
     {{#each this}}
     <div class="view-list__item" data-id="{{id}}">
       <div class="view__tools">
-        <div class="icon icon-delete"></div>
         <div>
           <span>{{width}}x{{height}}</span>
           <span class="view__title">{{title}}</span>
@@ -81,7 +81,6 @@
   <script id="tpl-view-list-single" type="text/x-handlebars-template">
     <div class="view-list__item" data-id="{{id}}">
       <div class="view__tools">
-        <div class="icon icon-delete"></div>
         <div>
           <span>{{width}}x{{height}}</span>
           <span class="view__title">{{title}}</span>
