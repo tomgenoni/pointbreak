@@ -144,7 +144,7 @@ function refreshViewOrder() {
 function savePreferences() {
   var navListItems = qsa('#nav-list .nav-list__item');
   pbPrefs.views = [];
-
+  
   navListItems.forEach(function(el){
       pbPrefs.views.push({
         id: el.dataset.id,
@@ -153,7 +153,7 @@ function savePreferences() {
         height: el.dataset.height
       })
   });
-    
+
   var string = JSON.stringify(pbPrefs);
   localStorage.setItem('pbPrefs', string);
 }
@@ -166,6 +166,7 @@ function init() {
   if (storedPrefs != null) {
     pbPrefs = JSON.parse(storedPrefs);
   }
+  
   renderHandlebars(pbPrefs.views, tplNavList, navList);
   renderHandlebars(pbPrefs.views, tplViewList, viewList);
   refreshViewOrder();
