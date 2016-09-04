@@ -131,12 +131,13 @@ function deleteItem(deletedID) {
 
 function refreshViewOrder() {
   var navListItems  = qsa('#nav-list .nav-list__item');
-  var distance = 20;
+  var gap = 15;
+  var distance = gap;
     
   navListItems.forEach(function(item){
     var view = qs('#view-list [data-id="'+item.dataset.id+'"]');
     view.style.transform = 'translateX(' + distance + 'px)';
-    distance = 20 + distance + parseFloat(item.dataset.width);
+    distance = gap + distance + parseFloat(item.dataset.width);
   });
 }
 

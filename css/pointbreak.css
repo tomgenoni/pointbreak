@@ -73,6 +73,7 @@ body {
   background-color: #f1f1f1;
   border-bottom: 1px solid #ddd;
   z-index: 1;
+  padding: 4px 15px;
 }
 
 #toolbar:after {
@@ -90,38 +91,23 @@ body {
 #toolbar .toolbar__item {
   display: flex;
   align-items: center;
-  height: 34px;
   position: relative;
+  padding-right: 10px;
 }
-
-
 #toolbar .toolbar__item:last-child {
-  margin-right: 0;
-  flex: 1;
+  padding-right: 0;
 }
 
 #toolbar input {
   border: none;
-  padding: 3px 5px;
   border: 1px solid #ddd;
   font-size: 13px;
-  margin-right: 10px;
 }
 
-#toolbar .reload {
-  height: 24px;
-  width: 34px;
-  background: url(../i/reload.svg) center center;
-  background-size: 115% auto;
-  cursor: pointer;
-  border-radius: 2px;
-  margin-left: 5px;
-  margin-right: 5px;
+#toolbar .toolbar__input {
+  flex: 1;
 }
 
-#toolbar .reload:hover {
-  background-color: #fff;
-}
 
 #sidebar {
   background: #f9f9f9;
@@ -147,7 +133,7 @@ body {
   position: relative;
   z-index: 1;
   flex: none;
-  height: 35px;
+  height: 37px;
 }
 
 #btn-open-add-new:hover {
@@ -260,7 +246,7 @@ body {
   display: block;
   border-bottom: 1px solid rgba(0,0,0,.1);
   position: absolute;
-  top: 35px;
+  top: 37px;
   left: 0;
 }
 
@@ -354,8 +340,8 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 11px;
   font-weight: 400;
   border-radius: 2px;
-  line-height: 26px;
-  height: 27px;
+  line-height: 25px;
+  height: 26px;
   padding: 0 7px;
 }
 
