@@ -79,6 +79,9 @@ function addNewItem(e) {
 
 function toggleAddNewWindow() {
   body.classList.toggle('add-new-active');
+  setTimeout(function(){
+    formAddError.style.display = 'none';
+  }, 200)
   resizeNav();
 }
 
@@ -128,7 +131,7 @@ function deleteItem(deletedID) {
 
 function refreshViewOrder() {
   var navListItems  = qsa('#nav-list .nav-list__item');
-  var distance = 0;
+  var distance = 20;
     
   navListItems.forEach(function(item){
     var view = qs('#view-list [data-id="'+item.dataset.id+'"]');

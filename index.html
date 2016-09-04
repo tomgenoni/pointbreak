@@ -10,13 +10,6 @@
   
 </head>
 <body>
-
-  <div id="toolbar">
-    <div class="toolbar__item reload"></div>
-    <div class="toolbar__item">
-      <input type="text" name="url" placeholder="URL" value="http://cnn.com">
-    </div>
-  </div>
   
   <div id="sidebar">
     <div class="logo">
@@ -48,9 +41,17 @@
     </form>
     <div id="nav-list"></div>
   </div>
-  
+  <div id="main">
+    <div id="toolbar">
+      <div class="toolbar__item reload"></div>
+      <div class="toolbar__item">
+        <input type="text" name="url" placeholder="URL" value="http://cnn.com">
+      </div>
+    </div>
+    <div id="view-list"></div>
+  </div>
 
-  <div id="view-list"></div>
+
   
   <script id="tpl-nav-list" type="text/x-handlebars-template">
     {{#each this}}
@@ -79,7 +80,6 @@
     </div>
     {{/each}}
   </script>
-
 
   <script src="js/dragula.js"></script>
   <script src="js/handlebars.min.js"></script>
