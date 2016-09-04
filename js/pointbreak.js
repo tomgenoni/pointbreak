@@ -71,8 +71,8 @@ function addNewItem(e) {
     renderHandlebars([newItem], tplNavList, navList, 'append');
     renderHandlebars([newItem], tplViewList, viewList, 'append');
     
-    resizeNav();
     refreshViewOrder();
+    resizeNav();
     savePreferences();
   }
 }
