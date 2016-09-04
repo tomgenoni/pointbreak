@@ -78,18 +78,6 @@ body {
   padding: 4px 15px;
 }
 
-#toolbar:after {
-  content:'';
-  height: 2px;
-  background: #518aad;
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 100%;
-  transform: translateX(0);
-  display: none;
-}
-
 #toolbar .toolbar__item {
   display: flex;
   align-items: center;
@@ -344,8 +332,8 @@ input[type=number]::-webkit-outer-spin-button {
   font-weight: 400;
   border-radius: 2px;
   line-height: 25px;
-  height: 26px;
-  padding: 0 7px;
+  height: 28px;
+  padding: 0 10px;
 }
 
 .button--tiny {
