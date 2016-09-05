@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/pointbreak.css">
   <link rel="stylesheet" href="css/dragula.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   
 </head>
 <body>
@@ -50,42 +49,10 @@
     <div id="view-list"></div>
   </div>
 
-
-  
-  <script id="tpl-nav-list" type="text/x-handlebars-template">
-    {{#each this}}
-    <div class="nav-list__item" data-id="{{id}}" data-title="{{title}}" data-width="{{width}}" data-height="{{height}}">
-      <div class="text">
-        <div class="text__size">{{width}}x{{height}}</div>
-        <div class="text__title">{{title}}</div>
-      </div>
-      <div class="icon icon-delete"></div>
-    </div>
-    {{/each}}
-  </script>
-  
-  <script id="tpl-view-list" type="text/x-handlebars-template">
-    {{#each this}}
-    <div class="view-list__item" data-id="{{id}}">
-      <div class="view__tools">
-        <div>
-          <button class="button button--tiny button--clear button--reload"></button>
-        </div>
-        <div>
-          <span class="view__size">{{width}}x{{height}}</span>
-          <span class="view__title">{{title}}</span>
-        </div>
-        <div class="icon icon-delete"></div>
-      </div>
-      <div frameborder="0" src="http://atomeye.com" class="webview" style="width:{{width}}px;height:{{height}}px"></div>
-    </div>
-    {{/each}}
-  </script>
-
   <script src="js/dragula.js"></script>
-  <script src="js/handlebars.min.js"></script>
   <script src="js/defaultPrefs.js"></script>
   <script src="js/pointbreak.js"></script>
+  <script src="js/renderTemplate.js"></script>
   
 </body>
 </html>

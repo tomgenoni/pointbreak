@@ -68,8 +68,8 @@ function addNewItem(e) {
     
     pbPrefs.views.push(newItem);
     
-    renderHandlebars([newItem], tplNavList, navList, 'prepend');
-    renderHandlebars([newItem], tplViewList, viewList, 'prepend');
+    renderNavList([newItem], 'prepend');
+    renderViewList([newItem], 'prepend');
     
     revealAddNew();
     refreshViewOrder();
@@ -167,20 +167,10 @@ function init() {
     pbPrefs = JSON.parse(storedPrefs);
   }
   
-  renderHandlebars(pbPrefs.views, tplNavList, navList);
-  renderHandlebars(pbPrefs.views, tplViewList, viewList);
+  renderNavList(pbPrefs.views);
+  renderViewList(pbPrefs.views);
   refreshViewOrder();
   savePreferences();
-}
-
-function renderHandlebars(data, template, target, type) {
-  var template = Handlebars.compile(template.textContent);
-  var html = template(data);
-  if (type !== null && type == 'prepend') {
-    target.innerHTML = html + target.innerHTML;
-  } else {
-    target.innerHTML = html;
-  }
 }
 
 function removeLocalStorage() {
