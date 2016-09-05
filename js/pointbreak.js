@@ -68,15 +68,17 @@ function addNewItem(e) {
     
     pbPrefs.views.push(newItem);
     
-    renderNavList([newItem], 'prepend');
-    renderViewList([newItem], 'prepend');
-    
+    renderTemplate('navList', navList, [newItem], 'prepend')
+    renderTemplate('viewList', viewList, [newItem], 'prepend')
+
     revealAddNew();
     refreshViewOrder();
     savePreferences();
   }
 }
 
+// Show/hide just the Add New form
+// Hidden completely when list is on top
 function toggleAddNewWindow() {
   body.classList.toggle('add-new-active');
   setTimeout(function(){
@@ -167,8 +169,8 @@ function init() {
     pbPrefs = JSON.parse(storedPrefs);
   }
   
-  renderNavList(pbPrefs.views);
-  renderViewList(pbPrefs.views);
+  renderTemplate('navList', navList, pbPrefs.views)
+  renderTemplate('viewList', viewList, pbPrefs.views)
   refreshViewOrder();
   savePreferences();
 }

@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Pointbreak",
+  "version": "1.0",
+  "app": {
+    "background": {
+      "scripts": ["main.js"]
+    }
+  },
+  "permissions": [
+    "webview"
+  ]
+}
