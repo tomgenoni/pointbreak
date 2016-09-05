@@ -55,6 +55,8 @@ function init() {
       view.src = urlData[0];
     });
     
+    showWebviewLoader();
+    
     // Set the value of the URL bar
     urlInput.value = urlData[0];
     
@@ -214,9 +216,35 @@ function loadURL(e) {
     view.src = url;
   });
   
+  showWebviewLoader();
+  
   urlInput.value = url;
   urlData.unshift(url);
+  
   savePreferences();
+}
+
+function showWebviewLoader() {
+  var webviews = qsa("webview");
+  
+  webviews.forEach(function(view){
+    var indicator = view.parentNode.children[1];
+    console.log(indicator.innerText);
+    
+    var loadstart = function() {
+      indicator.classList.add('loading');
+    }
+    var loadstop = function() {
+      indicator.classList.remove('loading');
+      indicator.classList.add('loaded');
+      setTimeout(function(){
+        indicator.classList.remove('loaded');
+      }, 500)
+    }
+    view.addEventListener('loadstart', loadstart);
+    view.addEventListener('loadstop', loadstop);
+  });
+  
 }
 
 function urlClean(url) {
