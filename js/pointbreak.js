@@ -6,6 +6,8 @@ var viewList      = qs('#view-list');
 var btnOpenAddNew = qs('#btn-open-add-new');
 var formAddNew    = qs('#form-add');
 var formAddError  = qs('#form-add-error');
+var urlInput      = qs('#url');
+var formURL       = qs('#form-url');
 
 // Form data
 var newWidth      = qsa('#form-add [name="add-width"]');
@@ -23,6 +25,7 @@ var tplViewListSingle   = qs('#tpl-view-list-single');
 window.addEventListener('load', init);
 navList.addEventListener('click', itemClicked);
 viewList.addEventListener('click', viewClicked);
+formURL.addEventListener('submit', loadURL);
 btnOpenAddNew.addEventListener('click', toggleAddNewWindow);
 formAddNew.addEventListener('submit', addNewItem);
 
@@ -68,9 +71,13 @@ function addNewItem(e) {
     
     pbPrefs.views.push(newItem);
     
-    renderTemplate('navList', navList, [newItem], 'prepend')
-    renderTemplate('viewList', viewList, [newItem], 'prepend')
-
+    renderTemplate('navList', navList, [newItem], 'prepend');
+    renderTemplate('viewList', viewList, [newItem], 'prepend');
+    
+    // Set first URL in stack to new webview
+    var webviews = document.querySelectorAll('webview');
+    webviews[0].src = pbPrefs.urls[0];
+        
     revealAddNew();
     refreshViewOrder();
     savePreferences();
@@ -155,28 +162,46 @@ function savePreferences() {
         height: el.dataset.height
       })
   });
-
-  var string = JSON.stringify(pbPrefs);
-  localStorage.setItem('pbPrefs', string);
+  
+  chrome.storage.local.set(pbPrefs);
 }
 
 
 // Onload and libraries
 
 function init() {
-  var storedPrefs = localStorage.getItem('pbPrefs');
-  if (storedPrefs != null) {
-    pbPrefs = JSON.parse(storedPrefs);
-  }
+  var stored = chrome.storage.local.get(pbPrefs, function(){
+    // renderTemplate('navList', navList, pbPrefs.views)
+    // renderTemplate('viewList', viewList, pbPrefs.views)
+    // refreshViewOrder();
+    //
+    // // Set first URL in stack to new webview
+    // var webviews = document.querySelectorAll('webview');
+    // webviews.forEach(function(view){
+    //   view.src = pbPrefs.urls[0];
+    // });
+    //
+    // // Set the value of the URL bar
+    // urlInput.value = pbPrefs.urls[0];
+    //
+    // savePreferences();
+  });
+}
+
+function loadURL(e) {
+  e.preventDefault();
+  var url = urlInput.value;
+  var webviews = document.querySelectorAll('webview');
+  webviews.forEach(function(view){
+    view.src = url;
+  });
   
-  renderTemplate('navList', navList, pbPrefs.views)
-  renderTemplate('viewList', viewList, pbPrefs.views)
-  refreshViewOrder();
+  pbPrefs.urls.unshift(url);
   savePreferences();
 }
 
 function removeLocalStorage() {
-  localStorage.removeItem('pbPrefs');
+  chrome.storage.local.remove(pbPrefs);
 }
 
 // Drag and drop

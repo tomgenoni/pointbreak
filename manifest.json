@@ -8,6 +8,7 @@
     }
   },
   "permissions": [
-    "webview"
+    "webview",
+    "storage"
   ]
 }

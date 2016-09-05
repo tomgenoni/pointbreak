@@ -29,7 +29,7 @@ function renderTemplate(templateName, target, data, type) {
           </div>
           <div class="icon icon-delete"></div>
         </div>
-        <div frameborder="0" src="http://atomeye.com" class="webview" style="width:${data[index].width}px;height:${data[index].height}px"></div>
+        <webview src="" class="webview" style="width:${data[index].width}px;height:${data[index].height}px"></webview>
       </div>
       `
     }
