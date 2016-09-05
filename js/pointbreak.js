@@ -32,6 +32,58 @@ formAddNew.addEventListener('submit', addNewItem);
 
 // Functions
 
+// Onload
+
+function init() {
+  chrome.storage.local.get(['urlData', 'viewData'], function(result){
+                        
+    if (result.viewData && result.urlData) {
+      urlData = result.urlData;
+      viewData = result.viewData;
+    } else {
+      urlData = urlDataVirgin;
+      viewData = viewDataVirgin;
+    }
+        
+    renderTemplate('navList', navList, viewData)
+    renderTemplate('viewList', viewList, viewData)
+    refreshViewOrder();
+    
+    // Set the URL for each webview
+    var webviews = qsa('webview');
+    webviews.forEach(function(view){
+      view.src = urlData[0];
+    });
+    
+    // Set the value of the URL bar
+    urlInput.value = urlData[0];
+    
+    savePreferences();
+  });
+}
+
+// Save data to storage after some add/delete
+
+function savePreferences() {
+  var navListItems = qsa('#nav-list .nav-list__item');
+  viewData = [];
+  
+  navListItems.forEach(function(el){
+      viewData.push({
+        id    : el.dataset.id,
+        title : el.dataset.title,
+        width : el.dataset.width,
+        height: el.dataset.height
+      })
+  });
+    
+  chrome.storage.local.set({viewData:viewData});
+  chrome.storage.local.set({urlData:urlData});
+}
+
+
+
+
 function addNewItem(e) {
   e.preventDefault();
   
@@ -70,7 +122,7 @@ function addNewItem(e) {
     newWidth[0].value = '';
     newHeight[0].value = '';
     
-    data.views.push(newItem);
+    viewData.push(newItem);
     
     renderTemplate('navList', navList, [newItem], 'prepend');
     renderTemplate('viewList', viewList, [newItem], 'prepend');
@@ -79,10 +131,10 @@ function addNewItem(e) {
     refreshViewOrder();
 
     // Set first URL in stack to new webview
-    var webviews = document.querySelectorAll('webview');
-    webviews[0].src = data.urls[0];
+    var webviews = qsa('webview');
+    webviews[0].src = urlData[0];
     
-    console.log(data.urls[0]);
+    console.log(urlData[0]);
         
     savePreferences();
   }
@@ -132,9 +184,9 @@ function deleteItem(deletedID) {
   })
   
   // Remove deleted item from preferences object
-  data.views.forEach(function(item, index){
+  viewData.forEach(function(item, index){
     if ( deletedID == item.id ) {
-      data.views.splice(index,1);
+      viewData.splice(index,1);
     }
   });
 
@@ -154,60 +206,15 @@ function refreshViewOrder() {
   });
 }
 
-function savePreferences() {
-  var navListItems = qsa('#nav-list .nav-list__item');
-  data.views = [];
-  
-  navListItems.forEach(function(el){
-      data.views.push({
-        id: el.dataset.id,
-        title: el.dataset.title,
-        width: el.dataset.width,
-        height: el.dataset.height
-      })
-  });
-  
-  chrome.storage.local.set(data);
-}
-
-
-// Onload and libraries
-
-function init() {
-  var stored = chrome.storage.local.get(['urls', 'views'], function(result){
-        
-    if (result) {
-      data = result;
-    } else {
-      data = pbPrefs;
-    }
-    
-    renderTemplate('navList', navList, data.views)
-    renderTemplate('viewList', viewList, data.views)
-    refreshViewOrder();
-    
-    // Set first URL in stack to new webview
-    var webviews = document.querySelectorAll('webview');
-    webviews.forEach(function(view){
-      view.src = data.urls[0];
-    });
-    
-    // Set the value of the URL bar
-    urlInput.value = data.urls[0];
-    
-    savePreferences();
-  });
-}
-
 function loadURL(e) {
   e.preventDefault();
   var url = urlInput.value;
-  var webviews = document.querySelectorAll('webview');
+  var webviews = qsa('webview');
   webviews.forEach(function(view){
     view.src = url;
   });
   
-  data.urls.unshift(url);
+  urlData.unshift(url);
   savePreferences();
 }
 
@@ -222,23 +229,3 @@ drake.on('drop', function(){
   refreshViewOrder();
   savePreferences();
 });
-
-// Helpers
-
-function qs(i){
-  return document.querySelector(i);
-}
-
-function qsa(i){
-  return document.querySelectorAll(i);
-}
-
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
-}

@@ -3,7 +3,7 @@ function renderTemplate(templateName, target, data, type) {
   var html = '';
     
   data.forEach(function(value, index){
-        
+            
     if (templateName == 'navList') {
       var template =`
       <div class="nav-list__item" data-id="${data[index].id}" data-title="${data[index].title}" data-width="${data[index].width}" data-height="${data[index].height}">
