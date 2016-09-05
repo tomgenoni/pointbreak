@@ -19,6 +19,7 @@ var tplNavList          = qs('#tpl-nav-list');
 var tplViewList         = qs('#tpl-view-list');
 var tplViewListSingle   = qs('#tpl-view-list-single');
 
+var data = [];
 
 // Listeners
 
@@ -69,14 +70,16 @@ function addNewItem(e) {
     newWidth[0].value = '';
     newHeight[0].value = '';
     
-    pbPrefs.views.push(newItem);
+    data.views.push(newItem);
     
     renderTemplate('navList', navList, [newItem], 'prepend');
     renderTemplate('viewList', viewList, [newItem], 'prepend');
     
     // Set first URL in stack to new webview
     var webviews = document.querySelectorAll('webview');
-    webviews[0].src = pbPrefs.urls[0];
+    webviews[0].src = data.urls[0];
+    
+    console.log(data.urls[0]);
         
     revealAddNew();
     refreshViewOrder();
@@ -128,9 +131,9 @@ function deleteItem(deletedID) {
   })
   
   // Remove deleted item from preferences object
-  pbPrefs.views.forEach(function(item, index){
+  data.views.forEach(function(item, index){
     if ( deletedID == item.id ) {
-      pbPrefs.views.splice(index,1);
+      data.views.splice(index,1);
     }
   });
 
@@ -152,10 +155,10 @@ function refreshViewOrder() {
 
 function savePreferences() {
   var navListItems = qsa('#nav-list .nav-list__item');
-  pbPrefs.views = [];
+  data.views = [];
   
   navListItems.forEach(function(el){
-      pbPrefs.views.push({
+      data.views.push({
         id: el.dataset.id,
         title: el.dataset.title,
         width: el.dataset.width,
@@ -163,28 +166,35 @@ function savePreferences() {
       })
   });
   
-  chrome.storage.local.set(pbPrefs);
+  chrome.storage.local.set(data);
 }
 
 
 // Onload and libraries
 
 function init() {
-  var stored = chrome.storage.local.get(pbPrefs, function(){
-    // renderTemplate('navList', navList, pbPrefs.views)
-    // renderTemplate('viewList', viewList, pbPrefs.views)
-    // refreshViewOrder();
-    //
-    // // Set first URL in stack to new webview
-    // var webviews = document.querySelectorAll('webview');
-    // webviews.forEach(function(view){
-    //   view.src = pbPrefs.urls[0];
-    // });
-    //
-    // // Set the value of the URL bar
-    // urlInput.value = pbPrefs.urls[0];
-    //
-    // savePreferences();
+  var stored = chrome.storage.local.get(['urls', 'views'], function(result){
+        
+    if (result) {
+      data = result;
+    } else {
+      data = pbPrefs;
+    }
+    
+    renderTemplate('navList', navList, data.views)
+    renderTemplate('viewList', viewList, data.views)
+    refreshViewOrder();
+    
+    // Set first URL in stack to new webview
+    var webviews = document.querySelectorAll('webview');
+    webviews.forEach(function(view){
+      view.src = data.urls[0];
+    });
+    
+    // Set the value of the URL bar
+    urlInput.value = data.urls[0];
+    
+    savePreferences();
   });
 }
 
@@ -196,12 +206,12 @@ function loadURL(e) {
     view.src = url;
   });
   
-  pbPrefs.urls.unshift(url);
+  data.urls.unshift(url);
   savePreferences();
 }
 
 function removeLocalStorage() {
-  chrome.storage.local.remove(pbPrefs);
+  chrome.storage.local.remove(['urls','views']);
 }
 
 // Drag and drop
