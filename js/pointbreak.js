@@ -75,14 +75,15 @@ function addNewItem(e) {
     renderTemplate('navList', navList, [newItem], 'prepend');
     renderTemplate('viewList', viewList, [newItem], 'prepend');
     
+    revealAddNew();
+    refreshViewOrder();
+
     // Set first URL in stack to new webview
     var webviews = document.querySelectorAll('webview');
     webviews[0].src = data.urls[0];
     
     console.log(data.urls[0]);
         
-    revealAddNew();
-    refreshViewOrder();
     savePreferences();
   }
 }

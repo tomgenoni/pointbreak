@@ -39,7 +39,7 @@ function renderTemplate(templateName, target, data, type) {
   })
   
   if (type == 'prepend') {
-    target.innerHTML = html + target.innerHTML;
+    target.insertAdjacentHTML( 'afterbegin', html );
   } else {
     target.innerHTML = html;
   }
