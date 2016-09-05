@@ -21,9 +21,6 @@ function renderTemplate(templateName, target, data, type) {
       <div class="view-list__item" data-id="${data[index].id}">
         <div class="view__tools">
           <div>
-            <button class="button button--tiny button--clear button--reload"></button>
-          </div>
-          <div>
             <span class="view__size">${data[index].width}x${data[index].height}</span>
             <span class="view__title">${data[index].title}</span>
           </div>

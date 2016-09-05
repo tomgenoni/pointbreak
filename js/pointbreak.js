@@ -208,18 +208,29 @@ function refreshViewOrder() {
 
 function loadURL(e) {
   e.preventDefault();
-  var url = urlInput.value;
+  var url = urlClean(urlInput.value);
   var webviews = qsa('webview');
   webviews.forEach(function(view){
     view.src = url;
   });
   
+  urlInput.value = url;
   urlData.unshift(url);
   savePreferences();
 }
 
+function urlClean(url) {
+  var prefix = 'http';
+  if (url.substr(0, prefix.length) !== prefix) {
+      url = prefix + '://' + url;
+  }
+  return url;
+}
+  
+
+// Remove all stored data
 function removeLocalStorage() {
-  chrome.storage.local.remove(['urls','views']);
+  chrome.storage.local.remove(['urlData','viewData']);
 }
 
 // Drag and drop

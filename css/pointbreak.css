@@ -29,7 +29,7 @@ body {
 }
 
 .view__tools {
-  padding-bottom: 0;
+  padding-bottom: 5px;
   position: relative;
   display: flex;
   align-items: center;
