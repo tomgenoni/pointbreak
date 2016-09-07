@@ -390,5 +390,5 @@ input[type=number]::-webkit-outer-spin-button {
 .load-indicator.loaded:before {
   transform: translateX(0);
   opacity: 0;
-  transition: transform 200ms, opacity 200ms 200ms;
+  transition: transform 200ms, opacity 200ms 400ms;
 }

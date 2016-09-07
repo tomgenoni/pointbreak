@@ -4,7 +4,7 @@
   "version": "1.0",
   "app": {
     "background": {
-      "scripts": ["main.js"]
+      "scripts": ["app.js"]
     }
   },
   "permissions": [

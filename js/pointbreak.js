@@ -1,25 +1,23 @@
 // Selectors
 
-var body          = qs('body');
-var navList       = qs('#nav-list');
-var viewList      = qs('#view-list');
-var btnOpenAddNew = qs('#btn-open-add-new');
-var formAddNew    = qs('#form-add');
-var formAddError  = qs('#form-add-error');
-var urlInput      = qs('#url');
-var formURL       = qs('#form-url');
+var body              = qs('body');
+var navList           = qs('#nav-list');
+var viewList          = qs('#view-list');
+var btnOpenAddNew     = qs('#btn-open-add-new');
+var formAddNew        = qs('#form-add');
+var formAddError      = qs('#form-add-error');
+var urlInput          = qs('#url');
+var formURL           = qs('#form-url');
 
 // Form data
-var newWidth      = qsa('#form-add [name="add-width"]');
-var newHeight     = qsa('#form-add [name="add-height"]');
-var newTitle      = qsa('#form-add [name="add-title"]');
+var newWidth          = qsa('#form-add [name="add-width"]');
+var newHeight         = qsa('#form-add [name="add-height"]');
+var newTitle          = qsa('#form-add [name="add-title"]');
 
 // Handlebars templates
-var tplNavList          = qs('#tpl-nav-list');
-var tplViewList         = qs('#tpl-view-list');
-var tplViewListSingle   = qs('#tpl-view-list-single');
-
-var data = [];
+var tplNavList        = qs('#tpl-nav-list');
+var tplViewList       = qs('#tpl-view-list');
+var tplViewListSingle = qs('#tpl-view-list-single');
 
 // Listeners
 
@@ -28,15 +26,15 @@ navList.addEventListener('click', itemClicked);
 viewList.addEventListener('click', viewClicked);
 formURL.addEventListener('submit', loadURL);
 btnOpenAddNew.addEventListener('click', toggleAddNewWindow);
-formAddNew.addEventListener('submit', addNewItem);
+formAddNew.addEventListener('submit', formValidate);
 
-// Functions
 
-// Onload
-
+// On app open
 function init() {
   chrome.storage.sync.get(['urlData', 'viewData'], function(result){
-                        
+              
+    // If there are settings previously saved
+    // otherwise use the virgin-state data
     if (result.viewData && result.urlData) {
       urlData = result.urlData;
       viewData = result.viewData;
@@ -60,27 +58,25 @@ function init() {
   });
 }
 
+// Set and load URL for each webview
 function setViewsURL(url) {
-  // Set the URL for each webview
   var webviews = qsa('webview');
   webviews.forEach(function(view){
     view.src = url;
   });
 }
 
-
-// Save data to storage after some add/delete
-
+// Save data to storage after some event
 function savePreferences() {
+  limitURLs();
   chrome.storage.sync.set({viewData:viewData});
   chrome.storage.sync.set({urlData:urlData});
 }
 
-function addNewItem(e) {
+function formValidate(e) {
   e.preventDefault();
   
   var error = false;
-  
   var inputsToCheck = [
     newWidth[0].value,
     newHeight[0].value
@@ -88,59 +84,73 @@ function addNewItem(e) {
   
   inputsToCheck.forEach(function(item, value) {
     if ( item == '' && item != parseInt(item, 10)) {
-      formAddError.style.display = 'block';
-      revealAddNew();
+      formError('block');
+      revealAddNewForm();
       error = true;
-      return;
     }
   });
   
-  if ( error != true ) {
-    
-    formAddError.style.display = 'none';
-    
-    if ( newTitle[0].value == '') {
-      newTitle[0].value = 'Custom';
-    }
-    
-    var newItem = {
-      id: guid(),
-      title: newTitle[0].value,
-      width: newWidth[0].value,
-      height: newHeight[0].value
-    };
-    
-    newTitle[0].value = '';
-    newWidth[0].value = '';
-    newHeight[0].value = '';
-    
-    viewData.push(newItem);
-    
-    renderTemplate('navList', navList, [newItem], 'prepend');
-    renderTemplate('viewList', viewList, [newItem], 'prepend');
-    
-    revealAddNew();
-    refreshViewOrder();
+  // If we find any errors stop here.
+  if (error == true) return;
+  
+  // If no errors, add the new item.
+  addNewView();
+}
 
-    // Set first URL in stack to new webview
-    var webviews = qsa('webview');
-    webviews[0].src = urlData[0];
-            
-    savePreferences();
+function addNewView() {
+  formError('none');
+  
+  // Title is not required
+  if ( newTitle[0].value == '') {
+    newTitle[0].value = 'Custom';
   }
+  
+  // Get values for new item to be added
+  var newItem = {
+    id: guid(),
+    title: newTitle[0].value,
+    width: newWidth[0].value,
+    height: newHeight[0].value
+  };
+  
+  // Clear out all form values
+  newTitle[0].value  = '';
+  newWidth[0].value  = '';
+  newHeight[0].value = '';
+  
+  viewData.push(newItem);
+  
+  renderTemplate('navList', navList, [newItem], 'prepend');
+  renderTemplate('viewList', viewList, [newItem], 'prepend');
+  
+  revealAddNewForm();
+  refreshViewOrder();
+
+  // Set first URL in stack to new webview
+  var webviews = qsa('webview');
+  webviews[0].src = urlData[0];
+          
+  savePreferences();
 }
 
 // Show/hide just the Add New form
 // Hidden completely when list is on top
 function toggleAddNewWindow() {
   body.classList.toggle('add-new-active');
-  setTimeout(function(){
-    formAddError.style.display = 'none';
-  }, 200)
-  revealAddNew();
+  revealAddNewForm();
+  navList.addEventListener('transitionend', formError('none'), false);
+  navList.removeEventListener('transitionend', formError('none'), false);
 }
 
-function revealAddNew() {
+function formError(state){
+  formAddError.style.display = state;
+}
+
+
+// This shows/hides the new item form
+// We need to hide it until the items below slide down
+// Does NOT control the animation
+function revealAddNewForm() {
   var formHeight = formAddNew.offsetHeight;
   navList.style.transform = 'translateY(' + formHeight + 'px)';
   if ( !body.classList.contains('add-new-active')) {
@@ -196,6 +206,7 @@ function refreshViewOrder() {
   });
 }
 
+// Load the URL entered into the URL bar
 function loadURL(e) {
   e.preventDefault();
   
@@ -209,6 +220,7 @@ function loadURL(e) {
   savePreferences();
 }
 
+// Show webview progress loading bar
 function showWebviewLoader() {
   var webviews = qsa("webview");
   
@@ -222,15 +234,24 @@ function showWebviewLoader() {
     var loadstop = function() {
       indicator.classList.remove('loading');
       indicator.classList.add('loaded');
-      setTimeout(function(){
-        indicator.classList.remove('loaded');
-      }, 500)
     }
+    
+    // Wait for transition to end, ~500ms
+    var transitionEnded = function(event) {
+      indicator.classList.remove('loaded');
+      indicator.removeEventListener('transitionend', transitionEnded);
+    };
+
+    indicator.addEventListener('transitionend',transitionEnded, false);
     
     view.addEventListener('loadstart', loadstart);
     view.addEventListener('loadstop', loadstop);
   });
   
+}
+
+function limitURLs() {
+  urlData.slice(0, 10);
 }
 
 // Remove all stored data
