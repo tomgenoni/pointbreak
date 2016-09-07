@@ -50,11 +50,7 @@ function init() {
     refreshViewOrder();
     
     // Set the URL for each webview
-    var webviews = qsa('webview');
-    webviews.forEach(function(view){
-      view.src = urlData[0];
-    });
-    
+    setViewsURL(urlData[0])
     showWebviewLoader();
     
     // Set the value of the URL bar
@@ -63,6 +59,15 @@ function init() {
     savePreferences();
   });
 }
+
+function setViewsURL(url) {
+  // Set the URL for each webview
+  var webviews = qsa('webview');
+  webviews.forEach(function(view){
+    view.src = url;
+  });
+}
+
 
 // Save data to storage after some add/delete
 
@@ -210,12 +215,9 @@ function refreshViewOrder() {
 
 function loadURL(e) {
   e.preventDefault();
-  var url = urlClean(urlInput.value);
-  var webviews = qsa('webview');
-  webviews.forEach(function(view){
-    view.src = url;
-  });
   
+  var url = urlClean(urlInput.value);
+  setViewsURL(url)
   showWebviewLoader();
   
   urlInput.value = url;
