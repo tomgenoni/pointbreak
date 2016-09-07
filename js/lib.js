@@ -17,3 +17,11 @@ function guid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
     s4() + '-' + s4() + s4() + s4();
 }
+
+function urlClean(url) {
+  var prefix = 'http';
+  if (url.substr(0, prefix.length) !== prefix) {
+      url = prefix + '://' + url;
+  }
+  return url;
+}

@@ -35,7 +35,7 @@ formAddNew.addEventListener('submit', addNewItem);
 // Onload
 
 function init() {
-  chrome.storage.local.get(['urlData', 'viewData'], function(result){
+  chrome.storage.sync.get(['urlData', 'viewData'], function(result){
                         
     if (result.viewData && result.urlData) {
       urlData = result.urlData;
@@ -72,24 +72,9 @@ function setViewsURL(url) {
 // Save data to storage after some add/delete
 
 function savePreferences() {
-  var navListItems = qsa('#nav-list .nav-list__item');
-  viewData = [];
-  
-  navListItems.forEach(function(el){
-      viewData.push({
-        id    : el.dataset.id,
-        title : el.dataset.title,
-        width : el.dataset.width,
-        height: el.dataset.height
-      })
-  });
-    
-  chrome.storage.local.set({viewData:viewData});
-  chrome.storage.local.set({urlData:urlData});
+  chrome.storage.sync.set({viewData:viewData});
+  chrome.storage.sync.set({urlData:urlData});
 }
-
-
-
 
 function addNewItem(e) {
   e.preventDefault();
@@ -140,9 +125,7 @@ function addNewItem(e) {
     // Set first URL in stack to new webview
     var webviews = qsa('webview');
     webviews[0].src = urlData[0];
-    
-    console.log(urlData[0]);
-        
+            
     savePreferences();
   }
 }
@@ -231,11 +214,11 @@ function showWebviewLoader() {
   
   webviews.forEach(function(view){
     var indicator = view.parentNode.children[1];
-    console.log(indicator.innerText);
     
     var loadstart = function() {
       indicator.classList.add('loading');
     }
+    
     var loadstop = function() {
       indicator.classList.remove('loading');
       indicator.classList.add('loaded');
@@ -243,30 +226,42 @@ function showWebviewLoader() {
         indicator.classList.remove('loaded');
       }, 500)
     }
+    
     view.addEventListener('loadstart', loadstart);
     view.addEventListener('loadstop', loadstop);
   });
   
 }
 
-function urlClean(url) {
-  var prefix = 'http';
-  if (url.substr(0, prefix.length) !== prefix) {
-      url = prefix + '://' + url;
-  }
-  return url;
-}
-  
-
 // Remove all stored data
-function removeLocalStorage() {
-  chrome.storage.local.remove(['urlData','viewData']);
+function removeStorage() {
+  chrome.storage.sync.remove(['urlData','viewData'], function(){
+    console.log('app storage removed');
+  });
 }
 
+//-------------------------
 // Drag and drop
-
+//---------------------------
 var drake = dragula([navList]);
 drake.on('drop', function(){
   refreshViewOrder();
+  getNewOrder();
   savePreferences();
 });
+
+function getNewOrder() {
+  // Get all the remaining items since we don't know
+  // what the new order is
+  var navListItems = qsa('#nav-list .nav-list__item');
+  viewData = [];
+  
+  navListItems.forEach(function(el){
+      viewData.push({
+        id    : el.dataset.id,
+        title : el.dataset.title,
+        width : el.dataset.width,
+        height: el.dataset.height
+      })
+  });
+}
