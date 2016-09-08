@@ -97,6 +97,21 @@ body {
   flex: 1;
 }
 
+.toolbar__input-wrap {
+  flex: 1;
+  position: relative;
+  margin-right: 5px;
+}
+
+#bookmark {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+#bookmarks {
+  margin-right: 5px;
+}
 
 #sidebar {
   background: #f9f9f9;
