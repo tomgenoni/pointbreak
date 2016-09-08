@@ -262,6 +262,9 @@ function showWebviewLoader() {
   
   webviews.forEach(function(view){
     var indicator = view.parentNode.children[1];
+
+    indicator.classList.remove('loading');
+    indicator.classList.remove('loaded');
     
     var loadstart = function() {
       indicator.classList.add('loading');
