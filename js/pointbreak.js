@@ -25,14 +25,32 @@ var tplViewListSingle = qs('#tpl-view-list-single');
 // Listeners
 
 window.addEventListener('load', init);
+
 navList.addEventListener('click', itemClicked);
 viewList.addEventListener('click', viewClicked);
-formURL.addEventListener('submit', loadURL);
+formURL.addEventListener('submit', loadURLEvent);
+
 btnOpenAddNew.addEventListener('click', toggleAddNewWindow);
 formAddNew.addEventListener('submit', formValidate);
-btnBookmark.addEventListener('click', toggleBookmark);
-btnBookmarks.addEventListener('click', showBookmarks);
 
+btnBookmark.addEventListener('click', toggleBookmark);
+btnBookmarks.addEventListener('click', toggleBookmarksList);
+bookmarkList.addEventListener('click', loadBookmark);
+
+
+function hideBookmarks() {
+  bookmarkList.classList.remove('is-active');
+  bookmarkList.style.left = '-9999px';
+}
+
+function loadBookmark(e) {
+  e.preventDefault();
+  if (e.target.closest('li')) {
+      var url = e.target.closest('li').textContent;
+      hideBookmarks();
+      loadURL(url);
+  }
+}
 
 function toggleBookmark(e) {
   e.preventDefault();
@@ -54,10 +72,10 @@ function toggleBookmark(e) {
   saveBookmarks();
 }
 
-function showBookmarks(e) {
+function toggleBookmarksList(e) {
+  e.preventDefault();
   if (bookmarkList.classList.contains('is-active'))  {
-    bookmarkList.classList.remove('is-active');
-    bookmarkList.style.left = '-9999px';
+    hideBookmarks();
   } else {
     var rect = btnBookmarks.getBoundingClientRect();
     var top = Math.round(rect.bottom);
@@ -266,11 +284,15 @@ function refreshViewOrder() {
   });
 }
 
-// Load the URL entered into the URL bar
-function loadURL(e) {
+function loadURLEvent(e) {
   e.preventDefault();
-  
   var url = urlClean(urlInput.value);
+  loadURL(url);
+}
+
+// Load the URL entered into the URL bar
+function loadURL(url) {
+  
   setViewsURL(url)
   showWebviewLoader();
   

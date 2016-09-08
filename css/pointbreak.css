@@ -82,11 +82,12 @@ body {
   position: relative;
   padding-right: 5px;
 }
+
 #toolbar .toolbar__item:last-child {
   padding-right: 0;
 }
 
-#toolbar input {
+#toolbar #url {
   border: none;
   border: 1px solid #ddd;
   font-size: 13px;
@@ -101,6 +102,10 @@ body {
   flex: 1;
   position: relative;
   margin-right: 5px;
+}
+
+#toolbar #load-url {
+  order: 3;
 }
 
 #bookmark {
