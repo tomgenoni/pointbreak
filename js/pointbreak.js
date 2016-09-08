@@ -31,15 +31,15 @@ formAddNew.addEventListener('submit', formValidate);
 
 // On app open
 function init() {
-  chrome.storage.sync.get(['urlData', 'viewData'], function(result){
+  chrome.storage.sync.get(['urlLastUsed', 'viewData'], function(result){
               
     // If there are settings previously saved
     // otherwise use the virgin-state data
-    if (result.viewData && result.urlData) {
-      urlData = result.urlData;
+    if (result.viewData && result.urlLastUsed) {
+      urlLastUsed = result.urlLastUsed;
       viewData = result.viewData;
     } else {
-      urlData = urlDataVirgin;
+      urlLastUsed = urlLastUsedVirgin;
       viewData = viewDataVirgin;
     }
         
@@ -48,11 +48,11 @@ function init() {
     refreshViewOrder();
     
     // Set the URL for each webview
-    setViewsURL(urlData[0])
+    setViewsURL(urlLastUsed)
     showWebviewLoader();
     
     // Set the value of the URL bar
-    urlInput.value = urlData[0];
+    urlInput.value = urlLastUsed;
     
     savePreferences();
   });
@@ -68,9 +68,8 @@ function setViewsURL(url) {
 
 // Save data to storage after some event
 function savePreferences() {
-  limitURLs();
   chrome.storage.sync.set({viewData:viewData});
-  chrome.storage.sync.set({urlData:urlData});
+  chrome.storage.sync.set({urlLastUsed:urlLastUsed});
 }
 
 function formValidate(e) {
@@ -128,7 +127,7 @@ function addNewView() {
 
   // Set first URL in stack to new webview
   var webviews = qsa('webview');
-  webviews[0].src = urlData[0];
+  webviews[0].src = urlLastUsed[0];
           
   savePreferences();
 }
@@ -215,7 +214,7 @@ function loadURL(e) {
   showWebviewLoader();
   
   urlInput.value = url;
-  urlData.unshift(url);
+  urlLastUsed = url;
   
   savePreferences();
 }
@@ -250,13 +249,9 @@ function showWebviewLoader() {
   
 }
 
-function limitURLs() {
-  urlData.slice(0, 10);
-}
-
 // Remove all stored data
 function removeStorage() {
-  chrome.storage.sync.remove(['urlData','viewData'], function(){
+  chrome.storage.sync.remove(['urlLastUsed','viewData'], function(){
     console.log('app storage removed');
   });
 }
