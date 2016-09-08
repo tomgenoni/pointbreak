@@ -405,3 +405,54 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 0;
   transition: transform 200ms, opacity 200ms 400ms;
 }
+
+
+#bookmarkList {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  max-width: 400px;
+  z-index: 1;
+  transform: translateY(0);
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,.1);
+}
+
+#bookmarkList.is-active {
+  transform: translateY(5px);
+  transition: opacity 200ms, transform 200ms;
+  opacity: 1;
+}
+
+#bookmarkList:after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 9px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+}
+
+#bookmarkList ul {
+  padding: 5px;
+  max-height: 135px;
+  overflow-y: scroll;
+}
+
+#bookmarkList li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 2px;
+}
+
+#bookmarkList li:hover {
+  background: #f1f1f1;
+}

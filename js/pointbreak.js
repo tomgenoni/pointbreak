@@ -10,6 +10,7 @@ var urlInput          = qs('#url');
 var formURL           = qs('#form-url');
 var btnBookmark       = qs('#bookmark');
 var btnBookmarks      = qs('#bookmarks');
+var bookmarkList      = qs('#bookmarkList');
 
 // Form data
 var newWidth          = qsa('#form-add [name="add-width"]');
@@ -34,28 +35,52 @@ btnBookmarks.addEventListener('click', showBookmarks);
 
 
 function toggleBookmark(e) {
-  e.preventDefault()
+  e.preventDefault();
+  var button = e.target;
   var url = urlInput.value;
+  // If in array already
   if ( bookmarks.indexOf(url) > -1 ) {
-    // remove class .is-active
+    button.classList.remove('is-active')
     bookmarks.forEach(function(value, index){
       if (url == value) {
         bookmarks.splice(index, 1)
       }
     })
   } else {
-    // add class .is-active
+    button.classList.add('is-active')
     bookmarks.push(url);
   }
+  renderBookmarks();
   saveBookmarks();
 }
 
 function showBookmarks(e) {
-  
+  if (bookmarkList.classList.contains('is-active'))  {
+    bookmarkList.classList.remove('is-active');
+    bookmarkList.style.left = '-9999px';
+  } else {
+    var rect = btnBookmarks.getBoundingClientRect();
+    var top = Math.round(rect.bottom);
+    var left = Math.round(rect.right);
+    var listWidth = bookmarkList.offsetWidth;
+    bookmarkList.style.left = (left - listWidth) + 'px';
+    bookmarkList.style.top = top + 'px';
+    bookmarkList.classList.add('is-active')
+  }
 }
 
 function saveBookmarks() {
   chrome.storage.sync.set({bookmarks:bookmarks});
+}
+
+function renderBookmarks() {
+  var html = '';
+  var container = qs('#bookmarkList ul');
+  bookmarks.forEach(function(value, index){
+    var template = `<li>${value}</li>`;
+    html = html + template;
+  });
+  container.innerHTML = html;
 }
 
 // On app open
@@ -77,11 +102,10 @@ function init() {
     } else {
       bookmarks = [];
     }
-    
-    console.log(bookmarks);
-        
-    renderTemplate('navList', navList, viewData)
-    renderTemplate('viewList', viewList, viewData)
+
+    renderTemplate('navList', navList, viewData);
+    renderTemplate('viewList', viewList, viewData);
+    renderBookmarks();
     refreshViewOrder();
     
     // Set the URL for each webview
@@ -164,7 +188,7 @@ function addNewView() {
 
   // Set first URL in stack to new webview
   var webviews = qsa('webview');
-  webviews[0].src = urlLastUsed[0];
+  webviews[0].src = urlLastUsed;
           
   savePreferences();
 }
