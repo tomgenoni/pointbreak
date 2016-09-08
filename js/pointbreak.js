@@ -83,7 +83,15 @@ function toggleBookmarksList(e) {
     var listWidth = bookmarkList.offsetWidth;
     bookmarkList.style.left = (left - listWidth) + 'px';
     bookmarkList.style.top = top + 'px';
-    bookmarkList.classList.add('is-active')
+    bookmarkList.classList.add('is-active');
+    
+    window.addEventListener('click', function(e){
+      if (e.target != btnBookmarks) {
+        hideBookmarks();
+        window.removeEventListener('click', toggleBookmarksList);
+      }
+    });
+    
   }
 }
 
@@ -92,13 +100,18 @@ function saveBookmarks() {
 }
 
 function renderBookmarks() {
-  var html = '';
-  var container = qs('#bookmarkList ul');
-  bookmarks.forEach(function(value, index){
-    var template = `<li>${value}</li>`;
-    html = html + template;
-  });
-  container.innerHTML = html;
+  btnBookmarks.removeAttribute('disabled');
+  if (bookmarks.length < 1) {
+    btnBookmarks.setAttribute('disabled','disabled');
+  } else {
+    var html = '';
+    var container = qs('#bookmarkList ul');
+    bookmarks.forEach(function(value, index){
+      var template = `<li>${value}</li>`;
+      html = html + template;
+    });
+    container.innerHTML = html;
+  }
 }
 
 // On app open
