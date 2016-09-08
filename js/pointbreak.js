@@ -8,6 +8,8 @@ var formAddNew        = qs('#form-add');
 var formAddError      = qs('#form-add-error');
 var urlInput          = qs('#url');
 var formURL           = qs('#form-url');
+var btnBookmark       = qs('#bookmark');
+var btnBookmarks      = qs('#bookmarks');
 
 // Form data
 var newWidth          = qsa('#form-add [name="add-width"]');
@@ -27,11 +29,38 @@ viewList.addEventListener('click', viewClicked);
 formURL.addEventListener('submit', loadURL);
 btnOpenAddNew.addEventListener('click', toggleAddNewWindow);
 formAddNew.addEventListener('submit', formValidate);
+btnBookmark.addEventListener('click', toggleBookmark);
+btnBookmarks.addEventListener('click', showBookmarks);
 
+
+function toggleBookmark(e) {
+  e.preventDefault()
+  var url = urlInput.value;
+  if ( bookmarks.indexOf(url) > -1 ) {
+    // remove class .is-active
+    bookmarks.forEach(function(value, index){
+      if (url == value) {
+        bookmarks.splice(index, 1)
+      }
+    })
+  } else {
+    // add class .is-active
+    bookmarks.push(url);
+  }
+  saveBookmarks();
+}
+
+function showBookmarks(e) {
+  
+}
+
+function saveBookmarks() {
+  chrome.storage.sync.set({bookmarks:bookmarks});
+}
 
 // On app open
 function init() {
-  chrome.storage.sync.get(['urlLastUsed', 'viewData'], function(result){
+  chrome.storage.sync.get(['urlLastUsed', 'viewData', 'bookmarks'], function(result){
               
     // If there are settings previously saved
     // otherwise use the virgin-state data
@@ -42,6 +71,14 @@ function init() {
       urlLastUsed = urlLastUsedVirgin;
       viewData = viewDataVirgin;
     }
+    
+    if (result.bookmarks) {
+      bookmarks = result.bookmarks;
+    } else {
+      bookmarks = [];
+    }
+    
+    console.log(bookmarks);
         
     renderTemplate('navList', navList, viewData)
     renderTemplate('viewList', viewList, viewData)
