@@ -11,7 +11,9 @@ function renderTemplate(templateName, target, data, type) {
           <div class="text__size">${data[index].width}x${data[index].height}</div>
           <div class="text__title">${data[index].title}</div>
           </div>
-          <div class="icon icon-delete"></div>
+          <svg class="icon icon--small">
+            <use xlink:href="#icon-close"></use>
+          </svg>
       </div>
       `
     }
@@ -24,7 +26,9 @@ function renderTemplate(templateName, target, data, type) {
             <span class="view__size">${data[index].width}x${data[index].height}</span>
             <span class="view__title">${data[index].title}</span>
           </div>
-          <div class="icon icon-delete"></div>
+          <svg class="icon icon--small">
+            <use xlink:href="#icon-close"></use>
+          </svg>
         </div>
         <div class="load-indicator"></div>
         <webview src="" class="webview" style="width:${data[index].width}px;height:${data[index].height}px"></webview>

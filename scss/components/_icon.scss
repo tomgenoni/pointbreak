@@ -1,31 +1,45 @@
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   background-repeat: no-repeat;
   background-position: center center;
-}
-
-.icon-delete {
-  background-image: url(../i/close.svg);
-  background-size: 200% auto;
-  cursor: pointer;
-}
-
-.nav-list__item .icon-delete {
-  opacity: 0;
+  vertical-align: middle;
   flex: none;
-  transition: opacity 200ms;
+  transition: fill 100ms;
 }
 
-.nav-list__item:hover .icon-delete {
-  opacity: 8;
-  transition: opacity 200ms;
+.icon--small {
+  width: 12px;
+  height: 12px;
 }
 
-.icon-plus {
-  background-image: url(../i/plus.svg);
-  background-position: center center;
-  background-size: 108% auto;
-  width: 40px;
-  height: 30px;
+.icon--large {
+  width: 24px;
+  height: 24px;
 }
+
+
+// .icon-delete {
+//   //background-image: url(../i/close.svg);
+//   background-size: 200% auto;
+//   cursor: pointer;
+// }
+//
+// .nav-list__item .icon-delete {
+//   opacity: 0;
+//   flex: none;
+//   transition: opacity 200ms;
+// }
+//
+// .nav-list__item:hover .icon-delete {
+//   opacity: 8;
+//   transition: opacity 200ms;
+// }
+//
+// .icon-plus {
+//   //background-image: url(../i/plus.svg);
+//   background-position: center center;
+//   background-size: 108% auto;
+//   width: 40px;
+//   height: 30px;
+// }

@@ -4,7 +4,11 @@ html {
 }
 
 body {
-  background: url(../i/body.png);
+  background-color: #fff;
+  background-image: linear-gradient(45deg, #f9f9f9 25%, transparent 25%, transparent 75%, #f9f9f9 75%, #f9f9f9),
+  linear-gradient(45deg, #f9f9f9 25%, transparent 25%, transparent 75%, #f9f9f9 75%, #f9f9f9);
+  background-size: 16px 16px;
+  background-position:0 0, 8px 8px;
   -webkit-font-smoothing: antialiased;
   font-family: Roboto, -apple-system, BlinkMacSystemFont;
   font-size: 13px;

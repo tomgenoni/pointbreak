@@ -91,7 +91,10 @@ html {
   height: 100%; }
 
 body {
-  background: url(../i/body.png);
+  background-color: #fff;
+  background-image: linear-gradient(45deg, #f9f9f9 25%, transparent 25%, transparent 75%, #f9f9f9 75%, #f9f9f9), linear-gradient(45deg, #f9f9f9 25%, transparent 25%, transparent 75%, #f9f9f9 75%, #f9f9f9);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
   -webkit-font-smoothing: antialiased;
   font-family: Roboto, -apple-system, BlinkMacSystemFont;
   font-size: 13px;
@@ -108,31 +111,21 @@ body {
   margin-bottom: 20px; }
 
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   background-repeat: no-repeat;
-  background-position: center center; }
-
-.icon-delete {
-  background-image: url(../i/close.svg);
-  background-size: 200% auto;
-  cursor: pointer; }
-
-.nav-list__item .icon-delete {
-  opacity: 0;
-  flex: none;
-  transition: opacity 200ms; }
-
-.nav-list__item:hover .icon-delete {
-  opacity: 8;
-  transition: opacity 200ms; }
-
-.icon-plus {
-  background-image: url(../i/plus.svg);
   background-position: center center;
-  background-size: 108% auto;
-  width: 40px;
-  height: 30px; }
+  vertical-align: middle;
+  flex: none;
+  transition: fill 100ms; }
+
+.icon--small {
+  width: 12px;
+  height: 12px; }
+
+.icon--large {
+  width: 24px;
+  height: 24px; }
 
 .button {
   transition: background-color 100ms;
@@ -174,31 +167,23 @@ body {
   height: 20px;
   padding: 0 7px; }
 
-.button--clear {
-  background: none; }
-
+.button--clear,
 .button--clear:hover,
 .button--clear:focus {
-  background: none; }
-
-.button--reload {
-  transition: opacity 100ms;
-  background-image: url(../i/reload.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 14px 14px;
-  width: 26px; }
+  background: none;
+  padding: 0 5px; }
 
 .button--full {
   width: 100%; }
 
+.button:hover .icon {
+  transition: fill 100ms;
+  fill: #3f93f3; }
+
 #bookmark {
   position: absolute;
-  top: 4px;
-  right: 4px; }
-
-#bookmarks {
-  margin-right: 5px; }
+  top: 3px;
+  right: 8px; }
 
 #bookmarkList {
   position: absolute;
@@ -266,10 +251,16 @@ body {
   font-size: 13px;
   line-height: 1.3;
   position: relative; }
+  .nav-list__item .icon {
+    opacity: 0;
+    cursor: pointer; }
 
 .nav-list__item:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: #fff;
   transition: background 200ms; }
+  .nav-list__item:hover .icon {
+    transition: opacity 200ms;
+    opacity: 1; }
 
 .nav-list__item:last-child:after {
   content: '';
@@ -321,7 +312,7 @@ body {
   height: 37px; }
 
 #btn-open-add-new:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: #fff;
   transition: background 200ms; }
 
 .add-new-active #btn-open-add-new .icon {
@@ -339,7 +330,7 @@ body {
   background-color: #f1f1f1;
   border-bottom: 1px solid #ddd;
   z-index: 1;
-  padding: 4px 15px; }
+  padding: 4px 10px 4px 15px; }
 
 #toolbar .toolbar__item {
   display: flex;
@@ -389,13 +380,12 @@ body {
   font-size: 13px;
   line-height: 1.5; }
 
-.view-list__item .icon-delete,
-.view-list__item .button--reload {
+.view-list__item .icon {
+  cursor: pointer;
   opacity: 0;
   transition: opacity 200ms; }
 
-.view-list__item:hover .icon-delete,
-.view-list__item:hover .button--reload {
+.view-list__item:hover .icon {
   opacity: 1;
   transition: opacity 200ms; }
 

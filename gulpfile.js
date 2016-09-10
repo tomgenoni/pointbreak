@@ -1,6 +1,7 @@
-const gulp   = require('gulp')
-      sass   = require('gulp-sass'),
-      concat = require('gulp-concat')
+const gulp      = require('gulp')
+      sass      = require('gulp-sass'),
+      concat    = require('gulp-concat'),
+      svgSprite = require('gulp-svg-sprite');
 
 gulp.task('sass', function () {
   gulp.src('./scss/**/*.scss')
@@ -33,10 +34,21 @@ gulp.task('js', function() {
     .pipe(gulp.dest('./dist/'))
 });
 
+gulp.task('svg', function() {
+  gulp.src('./svg/*.svg')
+    .pipe(svgSprite({
+      mode: {
+        symbol: true
+      }
+    }))
+    .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('watch', function() {
   gulp.watch('./scss/**/*.scss', ['sass']);
+  gulp.watch('./js/*.*', ['js']);
   gulp.watch('./js/*.*', ['js']);
   gulp.watch(['app.html','i/*.*'], ['copy']);
 });
 
-gulp.task('default', ['copy', 'sass', 'js', 'watch']);
+gulp.task('default', ['copy', 'svg', 'sass', 'js', 'watch']);

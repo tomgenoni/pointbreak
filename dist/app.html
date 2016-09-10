@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <title>Pointbreak</title>
   <link rel="stylesheet" href="pointbreak.css">
+  <link rel="import" href="symbol/svg/sprite.symbol.svg" id="svgSprite">
 </head>
 <body>
   
   <div id="sidebar">
     <div id="btn-open-add-new">
-      <div class="icon icon-plus"></div>
+      <svg class="icon">
+        <use xlink:href="#icon-plus"></use>
+      </svg>
     </div>
     <form id="form-add">
       <div id="form-add-error">
@@ -38,12 +41,24 @@
   <div id="main">
     <div id="toolbar">
       <form class="toolbar__item toolbar__input" id="form-url">
-        <button class="button button--small" id="load-url">Load</button>
+        <button class="button button--small button--clear" id="load-url">
+          <svg class="icon">
+            <use xlink:href="#icon-reload"></use>
+          </svg>
+        </button>
         <div class="toolbar__input-wrap">
-          <button class="button button--tiny" id="bookmark">B</button>
+          <button class="button button--tiny button--clear" id="bookmark">
+            <svg class="icon">
+              <use xlink:href="#icon-star"></use>
+            </svg>
+          </button>
           <input type="text" name="url" id="url" placeholder="URL">
         </div>
-        <button class="button button--small" id="bookmarks">B</button>
+        <button class="button button--small button--clear" id="bookmarks">
+          <svg class="icon">
+            <use xlink:href="#icon-bookmark"></use>
+          </svg>
+        </button>
       </form>
     </div>
     <div id="view-list"></div>
@@ -52,7 +67,7 @@
   <div id="bookmarkList">
     <ul></ul>
   </div>
-
+  
   <script src="pointbreak.js"></script>
   
 </body>

@@ -271,7 +271,7 @@ function revealAddNewForm() {
 
 function itemClicked(e) {
   // If deleting an element
-  if (e.target.closest('.icon-delete')) {
+  if (e.target.closest('.icon')) {
     var deletedID = e.target.closest('.nav-list__item').dataset.id;
     deleteItem(deletedID)
   }
@@ -279,7 +279,7 @@ function itemClicked(e) {
 
 function viewClicked(e) {
   // If deleting an element
-  if (e.target.closest('.icon-delete')) {
+  if (e.target.closest('.icon')) {
     var deletedID = e.target.closest('.view-list__item').dataset.id;
     deleteItem(deletedID)
   }
@@ -414,7 +414,9 @@ function renderTemplate(templateName, target, data, type) {
           <div class="text__size">${data[index].width}x${data[index].height}</div>
           <div class="text__title">${data[index].title}</div>
           </div>
-          <div class="icon icon-delete"></div>
+          <svg class="icon icon--small">
+            <use xlink:href="#icon-close"></use>
+          </svg>
       </div>
       `
     }
@@ -427,7 +429,9 @@ function renderTemplate(templateName, target, data, type) {
             <span class="view__size">${data[index].width}x${data[index].height}</span>
             <span class="view__title">${data[index].title}</span>
           </div>
-          <div class="icon icon-delete"></div>
+          <svg class="icon icon--small">
+            <use xlink:href="#icon-close"></use>
+          </svg>
         </div>
         <div class="load-indicator"></div>
         <webview src="" class="webview" style="width:${data[index].width}px;height:${data[index].height}px"></webview>
@@ -474,3 +478,13 @@ function urlClean(url) {
   }
   return url;
 }
+
+function loadSprite() {
+  var htmlImport = document.querySelector('#svgSprite');
+  var htmlDoc = htmlImport.import;
+  var htmlMessage = htmlDoc.querySelector('svg');
+  document.body.insertBefore(htmlMessage.cloneNode(true), document.body.firstChild );
+  document.querySelector('svg').style.display = 'none';
+}
+
+loadSprite();

@@ -244,7 +244,7 @@ function revealAddNewForm() {
 
 function itemClicked(e) {
   // If deleting an element
-  if (e.target.closest('.icon-delete')) {
+  if (e.target.closest('.icon')) {
     var deletedID = e.target.closest('.nav-list__item').dataset.id;
     deleteItem(deletedID)
   }
@@ -252,7 +252,7 @@ function itemClicked(e) {
 
 function viewClicked(e) {
   // If deleting an element
-  if (e.target.closest('.icon-delete')) {
+  if (e.target.closest('.icon')) {
     var deletedID = e.target.closest('.view-list__item').dataset.id;
     deleteItem(deletedID)
   }

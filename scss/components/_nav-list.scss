@@ -24,12 +24,26 @@
   font-size: 13px;
   line-height: 1.3;
   position: relative;
+  
+  .icon {
+    opacity: 0;
+    cursor: pointer;
+  }
 }
 
+
 .nav-list__item:hover {
-  background: rgba(255,255,255,.4);
+  background: #fff;
   transition: background 200ms;
+
+  .icon {
+    transition: opacity 200ms;
+    opacity: 1;
+  }
 }
+
+
+
 .nav-list__item:last-child:after {
   content: '';
   display: block;

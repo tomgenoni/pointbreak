@@ -23,14 +23,13 @@
   line-height: 1.5;
 }
 
-.view-list__item .icon-delete,
-.view-list__item .button--reload {
+.view-list__item .icon {
+  cursor: pointer;
   opacity: 0;
   transition: opacity 200ms;
 }
 
-.view-list__item:hover .icon-delete,
-.view-list__item:hover .button--reload {
+.view-list__item:hover .icon {
   opacity: 1;
   transition: opacity 200ms;
 }

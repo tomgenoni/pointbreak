@@ -25,3 +25,13 @@ function urlClean(url) {
   }
   return url;
 }
+
+function loadSprite() {
+  var htmlImport = document.querySelector('#svgSprite');
+  var htmlDoc = htmlImport.import;
+  var htmlMessage = htmlDoc.querySelector('svg');
+  document.body.insertBefore(htmlMessage.cloneNode(true), document.body.firstChild );
+  document.querySelector('svg').style.display = 'none';
+}
+
+loadSprite();

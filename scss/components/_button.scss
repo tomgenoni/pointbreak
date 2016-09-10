@@ -42,25 +42,18 @@
   padding: 0 7px;
 }
 
-.button--clear {
-  background: none;
-}
-
+.button--clear,
 .button--clear:hover,
 .button--clear:focus {
   background: none;
-}
-
-
-.button--reload {
-  transition: opacity 100ms;
-  background-image: url(../i/reload.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 14px 14px;
-  width: 26px;
+  padding: 0 5px;
 }
 
 .button--full {
   width: 100%;
+}
+
+.button:hover .icon {
+  transition: fill 100ms;
+  fill: #3f93f3
 }
