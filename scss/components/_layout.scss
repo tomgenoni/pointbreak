@@ -1,0 +1,24 @@
+body,
+html {
+  height: 100%;
+}
+
+body {
+  background: url(../i/body.png);
+  -webkit-font-smoothing: antialiased;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  overflow: hidden;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.push--bottom {
+  margin-bottom: 20px;
+}

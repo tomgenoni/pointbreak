@@ -1,3 +1,16 @@
-@import "partials/reset";
-@import "partials/pointbreak";
-@import "partials/dragula";
+@import "library/reset";
+@import "library/dragula";
+
+@import "components/fonts";
+@import "components/layout";
+
+@import "components/icon";
+@import "components/button";
+
+@import "components/bookmarks";
+@import "components/nav-list";
+@import "components/sidebar";
+@import "components/toolbar";
+@import "components/view-list";
+@import "components/add-new";
+@import "components/indicator";

@@ -1,0 +1,42 @@
+#toolbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+  z-index: 1;
+  padding: 4px 15px;
+}
+
+#toolbar .toolbar__item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-right: 5px;
+}
+
+#toolbar .toolbar__item:last-child {
+  padding-right: 0;
+}
+
+#toolbar #url {
+  border: none;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+#toolbar .toolbar__input {
+  flex: 1;
+}
+
+.toolbar__input-wrap {
+  flex: 1;
+  position: relative;
+  margin-right: 5px;
+}
+
+#toolbar #load-url {
+  order: 3;
+}

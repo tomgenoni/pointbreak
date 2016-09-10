@@ -1,0 +1,24 @@
+
+.load-indicator {
+  overflow: hidden;
+}
+
+.load-indicator:before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: #3f93f3;
+  opacity: 1;
+  transform: translateX(-100%);
+}
+
+.load-indicator.loading:before {
+  transform: translateX(-40%);
+  transition: transform 3000ms;
+}
+
+.load-indicator.loaded:before {
+  transform: translateX(0);
+  opacity: 0;
+  transition: transform 200ms, opacity 200ms 400ms;
+}

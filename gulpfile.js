@@ -13,7 +13,8 @@ gulp.task('copy', function () {
       'app.html',
       'app.js',
       'manifest.json',
-      './i/*.*'
+      './i/*.*',
+      './font/*.*'
   ],{
      base: './'
   })

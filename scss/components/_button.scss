@@ -1,0 +1,66 @@
+.button {
+  transition: background-color 100ms;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-family: inherit;
+  cursor: pointer;
+  margin: 0;
+  line-height: 32px;
+  font-size: 13px;
+  font-weight: 400;
+  border-radius: 2px;
+  height: 34px;
+  padding: 0 15px;
+  background-color: #3f93f3;
+  border: none;
+  color: #fff;
+  outline: none;
+}
+
+.button:hover,
+.button:focus {
+  transition: background-color 100ms;
+  background-color: #287ddd;
+}
+
+.button--small {
+  font-size: 11px;
+  font-weight: 400;
+  border-radius: 2px;
+  line-height: 28px;
+  height: 28px;
+  padding: 0 10px;
+}
+
+.button--tiny {
+  font-size: 10px;
+  font-weight: 400;
+  border-radius: 2px;
+  line-height: 20px;
+  height: 20px;
+  padding: 0 7px;
+}
+
+.button--clear {
+  background: none;
+}
+
+.button--clear:hover,
+.button--clear:focus {
+  background: none;
+}
+
+
+.button--reload {
+  transition: opacity 100ms;
+  background-image: url(../i/reload.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 14px 14px;
+  width: 26px;
+}
+
+.button--full {
+  width: 100%;
+}
