@@ -184,6 +184,15 @@ body {
   position: absolute;
   top: 3px;
   right: 8px; }
+  #bookmark .icon-star {
+    display: block; }
+  #bookmark .icon-star-solid {
+    display: none; }
+  #bookmark.has-url .icon-star {
+    display: none; }
+  #bookmark.has-url .icon-star-solid {
+    display: block;
+    fill: #3f93f3; }
 
 #bookmarkList {
   position: absolute;

@@ -54,20 +54,18 @@ function loadBookmark(e) {
 
 function toggleBookmark(e) {
   e.preventDefault();
-  var button = e.target;
   var url = urlInput.value;
   // If in array already
   if ( bookmarks.indexOf(url) > -1 ) {
-    button.classList.remove('is-active')
     bookmarks.forEach(function(value, index){
       if (url == value) {
         bookmarks.splice(index, 1)
       }
     })
   } else {
-    button.classList.add('is-active')
     bookmarks.push(url);
   }
+  checkForBookmark(url);
   renderBookmarks();
   saveBookmarks();
 }
@@ -139,6 +137,7 @@ function init() {
     // Set the value of the URL bar
     urlInput.value = urlLastUsed;
     
+    checkForBookmark(urlLastUsed);
     savePreferences();
   });
 }
@@ -305,7 +304,19 @@ function loadURL(url) {
   urlInput.value = url;
   urlLastUsed = url;
   
+  checkForBookmark(url);
   savePreferences();
+}
+
+function checkForBookmark(url) {
+  var button = qs('#bookmark');
+  var className = 'has-url';
+  console.log(bookmarks, url);
+  if ( bookmarks.indexOf(url) > -1 ) {
+    button.classList.add(className)
+  } else {
+    button.classList.remove(className)
+  }
 }
 
 // Show webview progress loading bar

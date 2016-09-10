@@ -2,6 +2,23 @@
   position: absolute;
   top: 3px;
   right: 8px;
+
+  .icon-star {
+    display: block;
+  }
+  .icon-star-solid {
+    display: none;
+  }
+  
+  &.has-url {
+    .icon-star {
+      display: none;
+    }
+    .icon-star-solid {
+      display: block;
+      fill: #3f93f3;
+    }
+  }
 }
 
 #bookmarkList {
