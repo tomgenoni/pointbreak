@@ -74,6 +74,7 @@ function toggleBookmark(e) {
 
 function toggleBookmarksList(e) {
   e.preventDefault();
+  
   if (bookmarkList.classList.contains('is-active'))  {
     hideBookmarks();
   } else {
@@ -85,10 +86,10 @@ function toggleBookmarksList(e) {
     bookmarkList.style.top = top + 'px';
     bookmarkList.classList.add('is-active');
     
-    window.addEventListener('click', function(e){
-      if (e.target != btnBookmarks) {
+    window.addEventListener('mousedown', function(e){
+      if (e.target != btnBookmarks && e.target != btnBookmark) {
         hideBookmarks();
-        window.removeEventListener('click', toggleBookmarksList);
+        window.removeEventListener('mousedown', toggleBookmarksList);
       }
     });
     
