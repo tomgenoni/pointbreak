@@ -85,14 +85,6 @@ function toggleBookmarksList(e) {
     bookmarkList.style.left = (left - listWidth) + 'px';
     bookmarkList.style.top = top + 'px';
     bookmarkList.classList.add('is-active');
-    
-    window.addEventListener('mousedown', function(e){
-      if (e.target != btnBookmarks && e.target != btnBookmark) {
-        hideBookmarks();
-        window.removeEventListener('mousedown', toggleBookmarksList);
-      }
-    });
-    
   }
 }
 
