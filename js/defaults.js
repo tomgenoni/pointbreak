@@ -5,14 +5,14 @@ urlLastUsedVirgin = [
 viewDataVirgin = [
   {
     id: '32d45cd4-145a-3cf4-ddc1-cc3855ce64f9',
-    title: 'iPhone 6',
+    title: 'Small',
     width: 414,
     height: 736
   },
   {
     id: 'a57cb33b-817a-1a5e-5bfa-14b996b60c0c',
-    title: 'Galaxy S',
-    width: 480,
+    title: 'Medium',
+    width: 760,
     height: 800
   },
   {

@@ -25,5 +25,6 @@ chrome.app.runtime.onRestarted.addListener(function() {
 function runApp() {
   chrome.app.window.create(
     'app.html',
-    {'id': 'Pointbreak'});
+    {'id': 'Pointbreak'}
+  );
 }

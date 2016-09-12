@@ -7,6 +7,11 @@
       "scripts": ["app.js"]
     }
   },
+  "icons": {
+      "16": "icons/pointbreak-16.png",
+      "48": "icons/pointbreak-48.png",
+      "128": "icons/pointbreak-128.png" 
+  },
   "permissions": [
     "webview",
     "storage"
