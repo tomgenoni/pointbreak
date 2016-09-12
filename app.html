@@ -4,50 +4,50 @@
   <meta charset="UTF-8">
   <title>Pointbreak</title>
   <link rel="stylesheet" href="pointbreak.css">
-  <link rel="import" href="symbol/svg/sprite.symbol.svg" id="svgSprite">
+  <link rel="import" href="symbol/svg/sprite.symbol.svg" data-js="svg-sprite">
 </head>
 <body>
   
-  <div id="sidebar">
-    <div id="btn-open-add-new">
+  <div class="sidebar">
+    <div class="sidebar__add-new" data-js="open-toggle-new">
       <svg class="icon">
         <use xlink:href="#icon-plus"></use>
       </svg>
     </div>
-    <form id="form-add">
-      <div id="form-add-error">
+    <form class="add-form" data-js="add-form">
+      <div class="add-form__error" data-js="add-form-error">
         Please enter a valid width and height.
       </div>
       <ul class="form-list">
         <li class="form-list__item split-input">
           <div class="split-input__item">
-            <input name="add-width" placeholder="width" type="number" pattern='[0-9]{10}'>
+            <input name="add-width" placeholder="width" type="number" pattern='[0-9]{10}' data-js="token-width">
           </div>
           <div class="split-input__item">
-            <input name="add-height" placeholder="height" type="number" pattern='[0-9]{10}'>
+            <input name="add-height" placeholder="height" type="number" pattern='[0-9]{10}' data-js="token-height">
           </div>
         </li>
         <li class="form-list__item">
-          <input type="text" name="add-title" placeholder="name">
+          <input type="text" name="add-title" placeholder="name" data-js="token-title">
         </li>
         <li class="form-list__item">
           <button class="button button--small button--full">Add</button>
         </li>
       </ul>
     </form>
-    <div id="nav-list"></div>
+    <div class="tokens" data-js="tokens"></div>
   </div>
   
-  <div id="main">
-    <div id="toolbar">
-      <form class="toolbar__item toolbar__input" id="form-url">
-        <button class="button button--small button--clear" id="load-url">
+  <div class="main">
+    <div class="toolbar">
+      <form class="toolbar__item toolbar__input" data-js="toolbar-form">
+        <button class="button button--small button--clear button--reload" data-js="load-url-btn">
           <svg class="icon">
             <use xlink:href="#icon-reload"></use>
           </svg>
         </button>
         <div class="toolbar__input-wrap">
-          <button class="button button--tiny button--clear" id="bookmark">
+          <button class="button button--tiny button--clear" data-js="bookmark-btn">
             <svg class="icon icon-star">
               <use xlink:href="#icon-star"></use>
             </svg>
@@ -55,19 +55,19 @@
               <use xlink:href="#icon-star-solid"></use>
             </svg>
           </button>
-          <input type="text" name="url" id="url" placeholder="URL">
+          <input type="text" name="url" id="url" placeholder="URL" data-js="toolbar-url">
         </div>
-        <button class="button button--small button--clear" id="bookmarks">
+        <button class="button button--small button--clear" data-js="bookmarks-btn">
           <svg class="icon">
             <use xlink:href="#icon-bookmark"></use>
           </svg>
         </button>
       </form>
     </div>
-    <div id="view-list"></div>
+    <div class="views" data-js="views"></div>
   </div>
   
-  <div id="bookmarkList">
+  <div class="bookmark-list" data-js="bookmark-list">
     <ul></ul>
   </div>
   

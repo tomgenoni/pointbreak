@@ -1,16 +1,27 @@
-#view-list {
+.views {
   position: relative;
   flex: 1;
   overflow: scroll;
 }
 
-.view-list__item {
+.view__item {
   margin-top: 10px;
   margin-bottom: 20px;
   transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1);
   position: absolute;
   top: 0;
   left: 0;
+
+  .icon {
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+  
+  &:hover .icon {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
 }
 
 .view__tools {
@@ -23,16 +34,6 @@
   line-height: 1.5;
 }
 
-.view-list__item .icon {
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 200ms;
-}
-
-.view-list__item:hover .icon {
-  opacity: 1;
-  transition: opacity 200ms;
-}
 
 .view__title {
   opacity: .6;

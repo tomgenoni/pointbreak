@@ -2,7 +2,7 @@ urlLastUsedVirgin = [
   'http://thumbtack.com'
 ],
 
-viewDataVirgin = [
+viewStoreVirgin = [
   {
     id: '32d45cd4-145a-3cf4-ddc1-cc3855ce64f9',
     title: 'Small',

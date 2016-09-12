@@ -1,42 +1,41 @@
-// Selectors
+// On app open
+function init() {
+  
+  var chromeStorage = [
+    'urlStore',
+    'viewStore',
+    'bookmarkStore'
+  ]
+  
+  chrome.storage.sync.get(chromeStorage, function(result){
 
-var body              = qs('body');
-var navList           = qs('#nav-list');
-var viewList          = qs('#view-list');
-var btnOpenAddNew     = qs('#btn-open-add-new');
-var formAddNew        = qs('#form-add');
-var formAddError      = qs('#form-add-error');
-var urlInput          = qs('#url');
-var formURL           = qs('#form-url');
-var btnBookmark       = qs('#bookmark');
-var btnBookmarks      = qs('#bookmarks');
-var bookmarkList      = qs('#bookmarkList');
+    detectDefaults(result);
+    
+    renderTemplate('tokens', tokens, viewStore);
+    renderTemplate('views', views, viewStore);
+    renderBookmarks();
+    refreshViewOrder();
 
-// Form data
-var newWidth          = qsa('#form-add [name="add-width"]');
-var newHeight         = qsa('#form-add [name="add-height"]');
-var newTitle          = qsa('#form-add [name="add-title"]');
+    setViewsURL(urlStore);
+    setToolbarURL(urlStore);
+        
+    checkForBookmark(urlStore);
+    savePreferences();
+  });
+}
 
-// Handlebars templates
-var tplNavList        = qs('#tpl-nav-list');
-var tplViewList       = qs('#tpl-view-list');
-var tplViewListSingle = qs('#tpl-view-list-single');
+function detectDefaults(result) {
+  // If there are settings previously saved
+  // otherwise use the virgin-state data
+  var viewStore = result.viewStore     ? result.viewStore     : viewStoreVirgin;
+  var urlStore  = result.urlStore      ? result.urlStore      : urlStoreVirgin;
+  var bookmarks = result.bookmarkStore ? result.bookmarkStore : [];
+}
 
-// Listeners
 
-window.addEventListener('load', init);
-
-navList.addEventListener('click', itemClicked);
-viewList.addEventListener('click', viewClicked);
-formURL.addEventListener('submit', loadURLEvent);
-
-btnOpenAddNew.addEventListener('click', toggleAddNewWindow);
-formAddNew.addEventListener('submit', formValidate);
-
-btnBookmark.addEventListener('click', toggleBookmark);
-btnBookmarks.addEventListener('click', toggleBookmarksList);
-bookmarkList.addEventListener('click', loadBookmark);
-
+function setToolbarURL(url) {
+  toolbar.url.value = url;
+}
 
 function hideBookmarks() {
   bookmarkList.classList.remove('is-active');
@@ -105,42 +104,6 @@ function renderBookmarks() {
   }
 }
 
-// On app open
-function init() {
-  chrome.storage.sync.get(['urlLastUsed', 'viewData', 'bookmarks'], function(result){
-              
-    // If there are settings previously saved
-    // otherwise use the virgin-state data
-    if (result.viewData && result.urlLastUsed) {
-      urlLastUsed = result.urlLastUsed;
-      viewData = result.viewData;
-    } else {
-      urlLastUsed = urlLastUsedVirgin;
-      viewData = viewDataVirgin;
-    }
-    
-    if (result.bookmarks) {
-      bookmarks = result.bookmarks;
-    } else {
-      bookmarks = [];
-    }
-
-    renderTemplate('navList', navList, viewData);
-    renderTemplate('viewList', viewList, viewData);
-    renderBookmarks();
-    refreshViewOrder();
-    
-    // Set the URL for each webview
-    setViewsURL(urlLastUsed)
-    showWebviewLoader();
-    
-    // Set the value of the URL bar
-    urlInput.value = urlLastUsed;
-    
-    checkForBookmark(urlLastUsed);
-    savePreferences();
-  });
-}
 
 // Set and load URL for each webview
 function setViewsURL(url) {
@@ -148,12 +111,13 @@ function setViewsURL(url) {
   webviews.forEach(function(view){
     view.src = url;
   });
+  showWebviewLoader();
 }
 
 // Save data to storage after some event
 function savePreferences() {
-  chrome.storage.sync.set({viewData:viewData});
-  chrome.storage.sync.set({urlLastUsed:urlLastUsed});
+  chrome.storage.sync.set({viewStore:viewStore});
+  chrome.storage.sync.set({urlStore:urlStore});
 }
 
 function formValidate(e) {
@@ -201,7 +165,7 @@ function addNewView() {
   newWidth[0].value  = '';
   newHeight[0].value = '';
   
-  viewData.push(newItem);
+  viewStore.push(newItem);
   
   renderTemplate('navList', navList, [newItem], 'prepend');
   renderTemplate('viewList', viewList, [newItem], 'prepend');
@@ -211,7 +175,7 @@ function addNewView() {
 
   // Set first URL in stack to new webview
   var webviews = qsa('webview');
-  webviews[0].src = urlLastUsed;
+  webviews[0].src = urlStore;
           
   savePreferences();
 }
@@ -267,9 +231,9 @@ function deleteItem(deletedID) {
   })
   
   // Remove deleted item from preferences object
-  viewData.forEach(function(item, index){
+  viewStore.forEach(function(item, index){
     if ( deletedID == item.id ) {
-      viewData.splice(index,1);
+      viewStore.splice(index,1);
     }
   });
 
@@ -299,10 +263,10 @@ function loadURLEvent(e) {
 function loadURL(url) {
   
   setViewsURL(url)
-  showWebviewLoader();
+  
   
   urlInput.value = url;
-  urlLastUsed = url;
+  urlStore = url;
   
   checkForBookmark(url);
   savePreferences();
@@ -354,7 +318,7 @@ function showWebviewLoader() {
 
 // Remove all stored data
 function removeStorage() {
-  chrome.storage.sync.remove(['urlLastUsed','viewData'], function(){
+  chrome.storage.sync.remove(['urlStore','viewStore'], function(){
     console.log('app storage removed');
   });
 }
@@ -373,10 +337,10 @@ function getNewOrder() {
   // Get all the remaining items since we don't know
   // what the new order is
   var navListItems = qsa('#nav-list .nav-list__item');
-  viewData = [];
+  viewStore = [];
   
   navListItems.forEach(function(el){
-      viewData.push({
+      viewStore.push({
         id    : el.dataset.id,
         title : el.dataset.title,
         width : el.dataset.width,

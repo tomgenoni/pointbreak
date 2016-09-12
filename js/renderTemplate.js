@@ -4,12 +4,12 @@ function renderTemplate(templateName, target, data, type) {
     
   data.forEach(function(value, index){
             
-    if (templateName == 'navList') {
+    if (templateName == 'tokens') {
       var template =`
-      <div class="nav-list__item" data-id="${data[index].id}" data-title="${data[index].title}" data-width="${data[index].width}" data-height="${data[index].height}">
-        <div class="text">
-          <div class="text__size">${data[index].width}x${data[index].height}</div>
-          <div class="text__title">${data[index].title}</div>
+      <div class="token__item" data-id="${data[index].id}" data-title="${data[index].title}" data-width="${data[index].width}" data-height="${data[index].height}">
+        <div class="token__text">
+          <div class="token__size">${data[index].width}x${data[index].height}</div>
+          <div class="token__title">${data[index].title}</div>
           </div>
           <svg class="icon icon--small">
             <use xlink:href="#icon-close"></use>
@@ -18,9 +18,9 @@ function renderTemplate(templateName, target, data, type) {
       `
     }
     
-    if (templateName == 'viewList') {
+    if (templateName == 'views') {
       var template =`
-      <div class="view-list__item" data-id="${data[index].id}">
+      <div class="view__item" data-id="${data[index].id}">
         <div class="view__tools">
           <div>
             <span class="view__size">${data[index].width}x${data[index].height}</span>

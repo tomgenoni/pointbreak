@@ -8,6 +8,10 @@ function qsa(i){
   return document.querySelectorAll(i);
 }
 
+function qsjs(i){
+  return document.querySelector('[data-js=' + i + ']');
+}
+
 function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -27,7 +31,7 @@ function urlClean(url) {
 }
 
 function loadSprite() {
-  var htmlImport = document.querySelector('#svgSprite');
+  var htmlImport = qsjs('svg-sprite');
   var htmlDoc = htmlImport.import;
   var htmlMessage = htmlDoc.querySelector('svg');
   document.body.insertBefore(htmlMessage.cloneNode(true), document.body.firstChild );
