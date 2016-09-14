@@ -1,5 +1,5 @@
 .sidebar {
-  background: #f9f9f9;
+  background: #dcdce5;
   position: relative;
   width: 160px;
   z-index: 1;
@@ -8,7 +8,6 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #ddd;
 }
 
 .sidebar__add-new {

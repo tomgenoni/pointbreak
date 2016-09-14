@@ -3,9 +3,10 @@
   display: flex;
   align-items: center;
   position: relative;
-  background-color: #f3f3f6;
+  background-color: #f8f8fa;
   z-index: 1;
-  padding: 15px 10px 15px 15px;
+  padding: 20px 10px 15px 15px;
+  -webkit-app-region: drag;
 
   .toolbar__item {
     display: flex;
@@ -21,9 +22,11 @@
   
   #url {
     border: none;
-    border: 1px solid #ddd;
+    border: 2px solid #eee;
     font-size: 13px;
     margin-right: 5px;
+    padding: 7px 10px;
+    border-radius: 5px;
   }
   
   .toolbar__input-wrap {

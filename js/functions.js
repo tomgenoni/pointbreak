@@ -236,7 +236,7 @@ function addNewView() {
 
   // Set first URL in stack to new webview
   var webviews = qsa('webview');
-  webviews[0].src = urlStore;
+  webviews[0].src = toolbar.url.value;
           
   savePreferences();
 }
