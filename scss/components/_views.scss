@@ -5,7 +5,6 @@
 }
 
 .view__item {
-  margin-top: 10px;
   margin-bottom: 20px;
   transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1);
   position: absolute;
@@ -19,8 +18,19 @@
   }
   
   &:hover .icon {
-    opacity: 1;
+    opacity: .3;
     transition: opacity 200ms;
+  }
+  
+  // Add some space after the last item so
+  // user can scroll to right with a gutter
+  &:last-child:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -15px;
+    width: 15px;
+    height: 10px;
   }
 }
 
@@ -34,6 +44,9 @@
   line-height: 1.5;
 }
 
+.view__size {
+  font-weight: 700;
+}
 
 .view__title {
   opacity: .6;

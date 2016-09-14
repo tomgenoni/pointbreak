@@ -1,16 +1,16 @@
 
-#form-add {
+.add-form {
   padding: 15px 15px;
   background: #fff;
   width: 100%;
   display: block;
-  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-top: 1px solid rgba(0,0,0,.1);
   position: absolute;
-  top: 37px;
+  top: 58px;
   left: 0;
 }
 
-#form-add-error {
+.add-form__error {
   margin-bottom: 10px;
   font-size: 11px;
   line-height: 1.2;
@@ -26,6 +26,7 @@ input[type=number] {
   border: 1px solid #ddd;
   padding: 5px;
   border-radius: 2px;
+  font-family: Lato, -apple-system, BlinkMacSystemFont;
 }
 
 input[type=text]:focus,
@@ -35,7 +36,7 @@ input[type=number]:focus {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-family: Roboto, -apple-system, BlinkMacSystemFont;
+  font-family: Lato, -apple-system, BlinkMacSystemFont;
 }
 
 input[type=number]::-webkit-inner-spin-button,

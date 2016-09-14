@@ -1,4 +1,4 @@
-#bookmark {
+.button--bookmark {
   position: absolute;
   top: 3px;
   right: 8px;
@@ -21,7 +21,7 @@
   }
 }
 
-#bookmarkList {
+.bookmark-window {
   position: absolute;
   left: -9999px;
   opacity: 0;
@@ -33,13 +33,13 @@
   box-shadow: 0 0 3px rgba(0,0,0,.2);
 }
 
-#bookmarkList.is-active {
+.bookmark-window.is-active {
   transform: translateY(5px);
   transition: opacity 200ms, transform 200ms;
   opacity: 1;
 }
 
-#bookmarkList:after {
+.bookmark-window:after {
   content: '';
   position: absolute;
   top: -5px;
@@ -51,13 +51,13 @@
   border-bottom: 5px solid #fff;
 }
 
-#bookmarkList ul {
+.bookmark-window ul {
   padding: 5px;
   max-height: 135px;
   overflow-y: scroll;
 }
 
-#bookmarkList li {
+.bookmark-window li {
   white-space: nowrap;
   text-overflow: ellipsis;
   padding: 5px;
@@ -67,6 +67,6 @@
   border-radius: 2px;
 }
 
-#bookmarkList li:hover {
+.bookmark-window li:hover {
   background: #f1f1f1;
 }

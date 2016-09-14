@@ -1,4 +1,4 @@
-urlLastUsedVirgin = [
+urlStoreVirgin = [
   'http://thumbtack.com'
 ],
 

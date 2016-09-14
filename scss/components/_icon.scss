@@ -1,6 +1,6 @@
 .icon {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   background-repeat: no-repeat;
   background-position: center center;
   vertical-align: middle;
@@ -9,37 +9,11 @@
 }
 
 .icon--small {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 .icon--large {
   width: 24px;
   height: 24px;
 }
-
-
-// .icon-delete {
-//   //background-image: url(../i/close.svg);
-//   background-size: 200% auto;
-//   cursor: pointer;
-// }
-//
-// .nav-list__item .icon-delete {
-//   opacity: 0;
-//   flex: none;
-//   transition: opacity 200ms;
-// }
-//
-// .nav-list__item:hover .icon-delete {
-//   opacity: 8;
-//   transition: opacity 200ms;
-// }
-//
-// .icon-plus {
-//   //background-image: url(../i/plus.svg);
-//   background-position: center center;
-//   background-size: 108% auto;
-//   width: 40px;
-//   height: 30px;
-// }

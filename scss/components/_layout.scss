@@ -4,13 +4,9 @@ html {
 }
 
 body {
-  background-color: #fff;
-  background-image: linear-gradient(45deg, #f9f9f9 25%, transparent 25%, transparent 75%, #f9f9f9 75%, #f9f9f9),
-  linear-gradient(45deg, #f9f9f9 25%, transparent 25%, transparent 75%, #f9f9f9 75%, #f9f9f9);
-  background-size: 16px 16px;
-  background-position:0 0, 8px 8px;
+  background-color: #f3f3f6;
   -webkit-font-smoothing: antialiased;
-  font-family: Roboto, -apple-system, BlinkMacSystemFont;
+  font-family: Lato, -apple-system, BlinkMacSystemFont;
   font-size: 13px;
   color: #666;
   display: flex;

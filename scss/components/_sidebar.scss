@@ -11,29 +11,29 @@
   border-right: 1px solid #ddd;
 }
 
-#btn-open-add-new {
+.sidebar__add-new {
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 1;
   cursor: pointer;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid rgba(0,0,0,.1);
   position: relative;
   z-index: 1;
   flex: none;
-  height: 37px;
+  height: 58px;
 }
 
-#btn-open-add-new:hover {
-  background: #fff;
-  transition: background 200ms;
+.sidebar__add-new:hover .icon {
+  transition: opacity 200ms, transform 200ms;
+  opacity: .7;
 }
 
-.add-new-active #btn-open-add-new .icon {
-  transition: transform 200ms;
+.add-new-active .sidebar__add-new .icon {
+  transition: opacity 200ms, transform 200ms;
   transform: rotate(45deg);
 }
-#btn-open-add-new .icon {
-  transition: transform 200ms;
+
+.sidebar__add-new .icon {
+  transition: opacity 200ms, transform 200ms;
+  opacity: .3;
 }

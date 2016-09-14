@@ -3,10 +3,9 @@
   display: flex;
   align-items: center;
   position: relative;
-  background-color: #f1f1f1;
-  border-bottom: 1px solid #ddd;
+  background-color: #f3f3f6;
   z-index: 1;
-  padding: 4px 10px 4px 15px;
+  padding: 15px 10px 15px 15px;
 
   .toolbar__item {
     display: flex;
@@ -42,5 +41,11 @@
   // been moved to the far right
   .button--reload {
     order: 3;
+    opacity: .3;
+    transition: opacity 200ms;
+  }
+  .button--reload:hover {
+    opacity: .5;
+    transition: opacity 200ms;
   }
 }

@@ -25,8 +25,12 @@ gulp.task('copy', function () {
 
 gulp.task('js', function() {
   gulp.src([
+    './js/dragula.js',
+    './js/defaults.js',
     './js/selectors.js',
-    './js/listener.js',
+    './js/listeners.js',
+    './js/functions.js',
+    './js/renderTemplate.js',
     './js/utility.js'
     ])
     .pipe(concat('pointbreak.js'))

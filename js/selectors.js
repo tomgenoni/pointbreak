@@ -24,9 +24,3 @@ var newToken = {
   height: qsjs('token-height'),
   title : qsjs('token-title')
 }
-
-var bookmark = {
-  toggle: qsjs('bookmark-btn'),
-  view  : qsjs('bookmarks-btn'),
-  list  : qsjs('bookmark-list')
-}
