@@ -24,3 +24,11 @@ var newToken = {
   height: qsjs('token-height'),
   title : qsjs('token-title')
 }
+
+// Window controls
+
+var control = {
+  close : qsjs('window-close'),
+  min   : qsjs('window-min'),
+  max   : qsjs('window-max')
+}
