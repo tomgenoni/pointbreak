@@ -128,14 +128,6 @@ function tokenClick(e) {
   }
 }
 
-function viewClick(e) {
-  // If deleting an element
-  if (e.target.closest('.icon')) {
-    var deletedID = e.target.closest('.view__item').dataset.id;
-    deleteItem(deletedID)
-  }
-}
-
 function deleteItem(deletedID) {
   // Get all items that match the ID
   var itemsToDelete = qsa('[data-id="'+deletedID+'"]');
@@ -156,30 +148,11 @@ function deleteItem(deletedID) {
   savePreferences();
 }
 
-// Show/hide just the Add New form
-// Hidden completely when list is on top
-function addNewToggle() {
-  body.classList.toggle('add-new-active');
-  revealAddNewForm();
-  tokens.addEventListener('transitionend', formError('none'), false);
-  tokens.removeEventListener('transitionend', formError('none'), false);
-}
-
 // Show form error as needed
 function formError(state){
   addNew.error.style.display = state;
 }
 
-// This shows/hides the new item form
-// We need to hide it until the items below slide down
-// Does NOT control the animation
-function revealAddNewForm() {
-  var formHeight = addNew.form.offsetHeight;
-  tokens.style.transform = 'translateY(' + formHeight + 'px)';
-  if ( !body.classList.contains('add-new-active')) {
-    tokens.style.transform = 'translateY(0)';
-  }
-}
 
 function addNewFormValidate(e) {
   e.preventDefault();
@@ -193,7 +166,6 @@ function addNewFormValidate(e) {
   inputsToCheck.forEach(function(value, index) {
     if ( value == '' || value != parseInt(value, 10)) {
       formError('block');
-      revealAddNewForm();
       error = true;
     }
   });
@@ -231,7 +203,6 @@ function addNewView() {
   renderTemplate('tokens', tokens, [newItem], 'prepend');
   renderTemplate('views', views, [newItem], 'prepend');
   
-  revealAddNewForm();
   refreshViewOrder();
 
   // Set first URL in stack to new webview
@@ -249,6 +220,7 @@ function loadURL(e) {
   // Clean the url if it's missing http
   var url = urlClean(toolbar.url.value);
   toolbar.url.value = url;
+  urlStore = url;
   
   setViewsURL(url)
   showWebviewLoader();

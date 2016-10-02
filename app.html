@@ -10,11 +10,7 @@
   
   <div class="sidebar">
     <div class="sidebar__window-tools"></div>
-    <div class="sidebar__add-new" data-js="open-toggle-new">
-      <svg class="icon">
-        <use xlink:href="#icon-plus"></use>
-      </svg>
-    </div>
+    <h3>Add View</h3>
     <form class="add-form" data-js="add-form">
       <div class="add-form__error" data-js="add-form-error">
         Please enter a valid width and height.
@@ -29,13 +25,14 @@
           </div>
         </li>
         <li class="form-list__item">
-          <input type="text" name="add-title" placeholder="name" data-js="token-title">
+          <input type="text" name="add-title" placeholder="name (optional)" data-js="token-title">
         </li>
         <li class="form-list__item">
           <button class="button button--small button--full">Add</button>
         </li>
       </ul>
     </form>
+    <h3>Views</h3>
     <div class="tokens" data-js="tokens"></div>
   </div>
   

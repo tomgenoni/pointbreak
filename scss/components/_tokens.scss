@@ -1,27 +1,24 @@
 
 .tokens {
-  transition: transform 200ms cubic-bezier(0.1, -0.1, 0.1, 1.1);
   position: relative;
   z-index: 1;
-  background: $sidebar-color;
   flex: 1;
   overflow-y: scroll;
-}
-
-// When add-new window open/closes
-.add-new-active .tokens {
-  transition: transform 200ms;
 }
 
 .token__item {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: 8px 15px;
   cursor: row-resize;
   transition: background 200ms;
   font-size: 13px;
   line-height: 1.3;
   position: relative;
+  
+  &:nth-child(odd) {
+    background: #f0f0f5;
+  }
   
   .icon {
     opacity: 0;
@@ -29,15 +26,14 @@
   }
 
   &:hover {
-    background: rgba(255,255,255,.4);
-    transition: background 200ms;
     
     .icon {
       transition: opacity 200ms;
       opacity: .3;
     }
   }
-  
+    
+  // The phantom item that is dragged around
   &.gu-mirror {
     background: rgba(255,255,255,.4);
   }
