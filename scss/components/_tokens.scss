@@ -15,11 +15,7 @@
   font-size: 13px;
   line-height: 1.3;
   position: relative;
-  
-  &:nth-child(odd) {
-    background: #f0f0f5;
-  }
-  
+    
   .icon {
     opacity: 0;
     cursor: pointer;
