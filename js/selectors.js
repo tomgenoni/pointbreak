@@ -7,8 +7,9 @@ var views  = qsjs('views');
 
 // Toolbar
 var toolbar = {
-  url   : qsjs('toolbar-url'),
-  form  : qsjs('toolbar-form')
+  setting  : qsjs('toolbar-setting'),
+  url      : qsjs('toolbar-url'),
+  form     : qsjs('toolbar-form')
 }
 
 // Add New Token Form

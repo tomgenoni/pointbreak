@@ -281,3 +281,7 @@ function getNewOrder() {
       })
   });
 }
+
+function toggleSidebar() {
+  body.classList.toggle('sidebar-active');
+}

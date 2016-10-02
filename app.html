@@ -9,6 +9,7 @@
 <body>
   
   <div class="sidebar">
+    <div class="sidebar__window-tools"></div>
     <div class="sidebar__add-new" data-js="open-toggle-new">
       <svg class="icon">
         <use xlink:href="#icon-plus"></use>
@@ -40,6 +41,11 @@
   
   <div class="main">
     <div class="toolbar">
+      <button class="button button--small button--clear button--setting" data-js="toolbar-setting">
+        <svg class="icon">
+          <use xlink:href="#icon-setting"></use>
+        </svg>
+      </button>
       <form class="toolbar__item toolbar__input" data-js="toolbar-form">
         <button class="button button--small button--clear button--reload" data-js="load-url-btn">
           <svg class="icon">

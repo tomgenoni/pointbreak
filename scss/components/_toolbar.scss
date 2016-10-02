@@ -25,6 +25,7 @@
     border: 2px solid #eee;
     font-size: 13px;
     margin-right: 5px;
+    margin-left: 5px;
     padding: 7px 10px;
     border-radius: 5px;
   }
@@ -39,16 +40,28 @@
     flex: 1;
   }
   
+  .button {
+    opacity: .3;
+    transition: opacity 200ms;
+  }
+  .button:hover {
+    opacity: .5;
+    transition: opacity 200ms;
+  }
+
   // This button is first in the source so that the
   // 'return' button triggers it, but visually it's
   // been moved to the far right
   .button--reload {
     order: 3;
-    opacity: .3;
-    transition: opacity 200ms;
   }
-  .button--reload:hover {
-    opacity: .5;
-    transition: opacity 200ms;
+
+}
+
+.sidebar-active .button--setting {
+  opacity: 1;
+
+  & .icon {
+    fill: $link-color;
   }
 }

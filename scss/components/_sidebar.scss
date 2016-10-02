@@ -1,5 +1,5 @@
 .sidebar {
-  background: #dcdce5;
+  background: $sidebar-color;
   position: relative;
   width: 160px;
   z-index: 1;
@@ -8,18 +8,22 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
-}
-
-.sidebar__add-new {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  flex: none;
-  height: 58px;
+  
+  &__window-tools {
+    height: 26px;
+  }
+  
+  &__add-new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    flex: none;
+    height: 24px;
+  }
 }
 
 .sidebar__add-new:hover .icon {

@@ -7,3 +7,4 @@ addNew.toggle.addEventListener('click', addNewToggle);
 addNew.form.addEventListener('submit', addNewFormValidate);
 
 toolbar.form.addEventListener('submit', loadURL);
+toolbar.setting.addEventListener('click', toggleSidebar);
