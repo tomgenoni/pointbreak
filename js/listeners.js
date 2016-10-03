@@ -1,4 +1,6 @@
 window.addEventListener('load', init);
+document.addEventListener('keydown', scrollSheild)
+document.addEventListener('keyup', scrollSheild)
 
 tokens.addEventListener('click', tokenClick);
 
@@ -9,6 +11,7 @@ newToken.width.addEventListener('keyup', addNewFormValidate);
 newToken.height.addEventListener('keyup', addNewFormValidate);
 
 addNew.form.addEventListener('submit', addNewView);
+
 
 
 // Window Controls

@@ -226,6 +226,20 @@ function loadURL(e) {
   savePreferences();
 }
 
+// Show/hide sidebar
+function toggleSidebar() {
+  body.classList.toggle('sidebar-active');
+}
+
+// Add transparent cover to views so scroll in app is not
+// swallowed by the webviews
+function scrollSheild(e) {
+  body.classList.remove('scroll-shield-active');
+   if (e.shiftKey) {
+     body.classList.add('scroll-shield-active');
+   }
+}
+
 // Drag and drop
 //---------------------------
 
@@ -250,8 +264,4 @@ function getNewOrder() {
         height: el.dataset.height
       })
   });
-}
-
-function toggleSidebar() {
-  body.classList.toggle('sidebar-active');
 }
