@@ -15,7 +15,7 @@ var toolbar = {
 // Add New Token Form
 var addNew = {
   form  : qsjs('add-form'),
-  error : qsjs('add-form-error')
+  button: qsjs('add-new')
 }
 
 // New Token info

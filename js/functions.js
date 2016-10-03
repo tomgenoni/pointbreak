@@ -148,37 +148,35 @@ function deleteItem(deletedID) {
   savePreferences();
 }
 
-// Show form error as needed
-function formError(state){
-  addNew.error.style.display = state;
-}
+//TODO: check each input for valid numbers, if they are both good
+// remove 'disabled' from the 'Add' button
 
-
-function addNewFormValidate(e) {
-  e.preventDefault();
+function addNewFormValidate() {
   
   var error = false;
+  
   var inputsToCheck = [
     newToken.width.value,
     newToken.height.value
   ];
-  
+
   inputsToCheck.forEach(function(value, index) {
     if ( value == '' || value != parseInt(value, 10)) {
-      formError('block');
+      addNew.button.setAttribute('disabled', 'disabled');
       error = true;
     }
   });
-  
-  // If we find any errors stop here.
-  if (error == true) return;
-  
-  // If no errors, add the new item.
-  addNewView();
+
+  if (error != true) {
+    addNew.button.removeAttribute('disabled');
+  };
 }
 
-function addNewView() {
-  formError('none');
+function addNewView(e) {
+  
+  e.preventDefault();
+    
+  addNew.button.setAttribute('disabled', 'disabled');
   
   // Title is not required
   if ( newToken.title.value == '') {
@@ -204,11 +202,11 @@ function addNewView() {
   renderTemplate('views', views, [newItem], 'prepend');
   
   refreshViewOrder();
-
+  
   // Set first URL in stack to new webview
   var webviews = qsa('webview');
   webviews[0].src = toolbar.url.value;
-          
+  
   savePreferences();
 }
 

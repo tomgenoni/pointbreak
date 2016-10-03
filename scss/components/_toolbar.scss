@@ -46,8 +46,16 @@
   }
   .button:hover {
     opacity: .5;
-    transition: opacity 200ms;
   }
+
+  .button:active {
+    opacity: 1;
+
+    & .icon {
+      fill: $link-color;
+    }
+  }
+
 
   // This button is first in the source so that the
   // 'return' button triggers it, but visually it's

@@ -17,23 +17,20 @@
   <div class="sidebar">
     <h3>New View</h3>
     <form class="add-form" data-js="add-form">
-      <div class="add-form__error" data-js="add-form-error">
-        Enter valid dimensions
-      </div>
       <ul class="form-list">
         <li class="form-list__item split-input">
           <div class="split-input__item">
-            <input name="add-width" placeholder="width" type="number" pattern='[0-9]{10}' data-js="token-width">
+            <input name="add-width" placeholder="width" type="text" data-js="token-width">
           </div>
           <div class="split-input__item">
-            <input name="add-height" placeholder="height" type="number" pattern='[0-9]{10}' data-js="token-height">
+            <input name="add-height" placeholder="height" type="text" data-js="token-height">
           </div>
         </li>
         <li class="form-list__item">
           <input type="text" name="add-title" placeholder="name (optional)" data-js="token-title">
         </li>
         <li class="form-list__item">
-          <button class="button button--small button--full">Add</button>
+          <button class="button button--small button--full" data-js="add-new" disabled>Add</button>
         </li>
       </ul>
     </form>
