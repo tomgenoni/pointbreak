@@ -6,7 +6,7 @@ html {
 body {
   background-color: #f8f8fa;
   -webkit-font-smoothing: antialiased;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica;
+  font-family: $font-stack;
   font-size: 13px;
   color: #222;
   display: flex;

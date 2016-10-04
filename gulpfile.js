@@ -16,7 +16,7 @@ gulp.task('copy', function () {
       'manifest.json',
       './i/*.*',
       './font/*.*',
-      './icons/*.*'
+      './icon/*.*'
   ],{
      base: './'
   })

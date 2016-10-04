@@ -210,7 +210,6 @@ function addNewView(e) {
   savePreferences();
 }
 
-
 // Load the URL entered into the URL bar
 function loadURL(e) {
   e.preventDefault();

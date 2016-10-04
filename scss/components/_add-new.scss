@@ -9,7 +9,7 @@ input[type=text] {
   border: 1px solid transparent;
   padding: 5px;
   border-radius: 2px;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica;
+  font-family: $font-stack;
 }
 
 input[type=text]:focus {
@@ -18,7 +18,7 @@ input[type=text]:focus {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica;
+  font-family: $font-stack;
 }
 
 .form-list__item {

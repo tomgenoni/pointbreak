@@ -17,7 +17,7 @@ viewStoreVirgin = [
   },
   {
     id: 'a017f948-2226-4ea5-b81d-1bdef63a5375',
-    title: 'Desktop',
+    title: 'Large',
     width: 980,
     height: 1200
   }

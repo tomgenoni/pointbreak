@@ -8,7 +8,7 @@
     }
   },
   "icons": {
-      "128": "icons/pointbreak-128.png" 
+      "128": "icon/pointbreak-128.png" 
   },
   "permissions": [
     "webview",

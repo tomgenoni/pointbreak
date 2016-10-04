@@ -1,12 +1,11 @@
 $sidebar-color: #e9e9ef;
 $add-new-height: 70px;
 $link-color: #3f93f3;
-
+$font-stack: unquote("-apple-system, BlinkMacSystemFont, Helvetica");
 
 @import "library/reset";
 @import "library/dragula";
 
-@import "components/fonts";
 @import "components/layout";
 
 @import "components/icon";
