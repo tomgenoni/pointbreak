@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
   "name": "Pointbreak",
-  "version": "1.0",
+  "version": "0.1",
   "app": {
     "background": {
       "scripts": ["app.js"]
     }
   },
   "icons": {
-      "128": "icon/pointbreak-128.png" 
+      "128": "icon/pointbreak-128.png"
   },
   "permissions": [
     "webview",

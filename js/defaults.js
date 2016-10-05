@@ -1,13 +1,13 @@
 urlStoreVirgin = [
-  'http://thumbtack.com'
+  'http://www.nationalparks.org'
 ],
 
 viewStoreVirgin = [
   {
     id: '32d45cd4-145a-3cf4-ddc1-cc3855ce64f9',
     title: 'Small',
-    width: 414,
-    height: 736
+    width: 420,
+    height: 720
   },
   {
     id: 'a57cb33b-817a-1a5e-5bfa-14b996b60c0c',
