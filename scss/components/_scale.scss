@@ -1,7 +1,18 @@
 .scale-wrap {
   padding: 0 15px 15px 15px;
+  display: flex;
+  align-items: center;
+  
+  .scale__value {
+    margin-left: auto;
+    font-size: 12px;
+    color: #aaa;
+    text-align: right;
+    
+  }
   
   #scale {
+      width: 90px;
       -webkit-appearance: none;
   }
 

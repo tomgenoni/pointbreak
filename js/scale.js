@@ -1,20 +1,23 @@
 var scale = qs("#scale");
+var scaleValue = qs(".scale__value");
+
 scale.addEventListener('input', scaleViews);
 
 function scaleViews() {
   var value = scale.value / 100;
   var webviews = document.querySelectorAll("webview");
   body.dataset.scale = value;
+  scaleValue.innerHTML = (parseFloat(value) * 100).toFixed(0) + "%"; 
+  
   refreshViewOrder();
   
   webviews.forEach(function(item){
-    setBodyScale(item);
+    scaleWebview(item);
     increaseObjectSize(item)
     reduceContainerSize(item)
   });
-  
-  function setBodyScale(item) {
-    // set the scale value for use by
+    
+  function scaleWebview(item) {
     item.style.transform = "scale("+value+")";
   }
   
