@@ -1,0 +1,39 @@
+.scale-wrap {
+  padding: 0 15px 15px 15px;
+  
+  #scale {
+      -webkit-appearance: none;
+  }
+
+  #scale::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 5px;
+      background: #ddd;
+      border: none;
+      border-radius: 3px;
+      transition: background 200ms;
+  }
+
+  #scale::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      background: #aaa;
+      margin-top: -4px;
+      transition: background 200ms;
+  }
+
+  #scale:focus {
+      outline: none;
+  }
+
+  #scale:hover::-webkit-slider-thumb {
+    background: #3f93f3;
+  }
+
+  #scale:hover::-webkit-slider-runnable-track {
+      background: #ccc;
+  }
+}

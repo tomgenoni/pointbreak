@@ -31,6 +31,7 @@ gulp.task('js', function() {
     './js/listeners.js',
     './js/functions.js',
     './js/renderTemplate.js',
+    './js/scale.js',
     './js/utility.js'
     ])
     .pipe(concat('pointbreak.js'))

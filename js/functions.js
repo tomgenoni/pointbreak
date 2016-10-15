@@ -40,6 +40,7 @@ function detectDefaults(result) {
 }
 
 function refreshViewOrder() {
+  var scaleValue = body.dataset.scale;
   var navListItems  = qsa('.tokens .token__item');
   var gap = 15;
   var distance = gap;
@@ -47,7 +48,7 @@ function refreshViewOrder() {
   navListItems.forEach(function(item){
     var view = qs('.views [data-id="'+item.dataset.id+'"]');
     view.style.transform = 'translateX(' + distance + 'px)';
-    distance = gap + distance + parseFloat(item.dataset.width);
+    distance = gap + distance + parseFloat(item.dataset.width) * scaleValue;
   });
 }
 
