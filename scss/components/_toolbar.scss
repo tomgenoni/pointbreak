@@ -6,7 +6,6 @@
   background-color: #f8f8fa;
   z-index: 1;
   padding: 24px 10px 15px 15px;
-  -webkit-app-region: drag;
 
   .toolbar__item {
     display: flex;
@@ -19,6 +18,14 @@
     }
   }
   
+  &__drag {
+    -webkit-app-region: drag;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 24px;
+  }
   
   #url {
     border: none;
