@@ -21,10 +21,15 @@
 
 .view__item {
   margin-bottom: 20px;
-  transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1);
+  transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1), opacity 1000ms;
   position: absolute;
   top: 0;
   left: 0;
+  opacity: 1;
+  
+  &.is-hidden {
+    opacity: 0;
+  }
 
   .icon {
     cursor: pointer;

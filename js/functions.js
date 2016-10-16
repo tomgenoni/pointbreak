@@ -69,7 +69,7 @@ function setToolbarURL(url) {
 // Show webview progress loading bar
 function showWebviewLoader() {
   var webviews = qsa("webview");
-  
+
   webviews.forEach(function(view){
     var indicator = view.parentNode.children[1];
 
@@ -78,6 +78,8 @@ function showWebviewLoader() {
     
     var loadstart = function() {
       indicator.classList.add('loading');
+      view.parentNode.classList.remove('is-hidden');
+      scaleViews();
     }
     
     var loadstop = function() {
@@ -197,14 +199,13 @@ function addNewView(e) {
   viewStore.push(newItem);
   
   renderTemplate('tokens', tokens, [newItem], 'prepend');
-  renderTemplate('views', views, [newItem], 'prepend');
-  
-  scaleViews();
+  renderTemplate('views', views, [newItem], 'prepend', true);
   
   // Set first URL in stack to new webview
   var webviews = qsa('webview');
   webviews[0].src = toolbar.url.value;
   
+  showWebviewLoader();
   savePreferences();
 }
 

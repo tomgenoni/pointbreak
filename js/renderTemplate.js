@@ -20,7 +20,7 @@ function renderTemplate(templateName, target, data, type) {
     
     if (templateName == 'views') {
       var template =`
-      <div class="view__item" data-id="${data[index].id}">
+      <div class="view__item is-hidden" data-id="${data[index].id}">
         <div class="view__tools">
           <div>
             <span class="view__size">${data[index].width}x${data[index].height}</span>
