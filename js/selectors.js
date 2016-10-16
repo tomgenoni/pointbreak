@@ -26,7 +26,6 @@ var newToken = {
 }
 
 // Window controls
-
 var control = {
   close : qsjs('window-close'),
   min   : qsjs('window-min'),

@@ -149,9 +149,6 @@ function deleteItem(deletedID) {
   savePreferences();
 }
 
-//TODO: check each input for valid numbers, if they are both good
-// remove 'disabled' from the 'Add' button
-
 function addNewFormValidate() {
   
   var error = false;
@@ -202,7 +199,7 @@ function addNewView(e) {
   renderTemplate('tokens', tokens, [newItem], 'prepend');
   renderTemplate('views', views, [newItem], 'prepend');
   
-  refreshViewOrder();
+  scaleViews();
   
   // Set first URL in stack to new webview
   var webviews = qsa('webview');
