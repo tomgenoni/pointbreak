@@ -1,6 +1,8 @@
 urlStoreVirgin = [
   'http://www.nationalparks.org'
-],
+]
+
+sidebarStateStoreVirgin = "open";
 
 viewStoreVirgin = [
   {

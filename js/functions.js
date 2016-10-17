@@ -3,29 +3,21 @@ function init() {
     
   var chromeStorage = [
     'urlStore',
-    'viewStore'
+    'viewStore',
+    'sidebarStateStore',
   ]
   
   chrome.storage.sync.get(chromeStorage, function(result){
 
     detectDefaults(result);
     
-    renderTemplate('tokens', tokens, viewStore);
-    renderTemplate('views', views, viewStore);
-    
-    refreshViewOrder();
-    
-    setViewsURL(urlStore);
-    setToolbarURL(urlStore);
-
-    savePreferences();
   });
 }
 
 function detectDefaults(result) {
   // If there are settings previously saved
   // otherwise use the virgin-state data
-  
+    
   if ( result.viewStore ) {
     viewStore = result.viewStore;
   } else {
@@ -37,6 +29,24 @@ function detectDefaults(result) {
   } else {
     urlStore = urlStoreVirgin;
   }
+  
+  if ( result.sidebarStateStore ) {
+    sidebarStateStore = result.sidebarStateStore;
+  } else {
+    sidebarStateStore = sidebarStateStoreVirgin;
+  }
+  
+  renderTemplate('tokens', tokens, viewStore);
+  renderTemplate('views', views, viewStore);
+  
+  refreshViewOrder();
+  
+  setViewsURL(urlStore);
+  setToolbarURL(urlStore);
+  setSidebarClass(sidebarStateStore);
+
+  savePreferences();
+  
 }
 
 function refreshViewOrder() {
@@ -64,6 +74,12 @@ function setViewsURL(url) {
 // Set the toolbar URL
 function setToolbarURL(url) {
   toolbar.url.value = url;
+}
+
+function setSidebarClass() {
+ if (sidebarStateStore == "open") {
+   body.classList.add('sidebar-active')
+ } 
 }
 
 // Show webview progress loading bar
@@ -110,6 +126,7 @@ function showWebviewLoader() {
 function savePreferences() {
   chrome.storage.sync.set({viewStore:viewStore});
   chrome.storage.sync.set({urlStore:urlStore});
+  chrome.storage.sync.set({sidebarStateStore:sidebarStateStore});
 }
 
 // Remove all stored data
@@ -227,6 +244,13 @@ function loadURL(e) {
 // Show/hide sidebar
 function toggleSidebar() {
   body.classList.toggle('sidebar-active');
+  var state = body.classList.contains('sidebar-active');
+  if (state) {
+    sidebarStateStore = "open";
+  } else {
+    sidebarStateStore = "closed";
+  }
+  savePreferences();
 }
 
 // Add transparent cover to views so scroll in app is not
