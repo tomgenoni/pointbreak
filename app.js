@@ -29,11 +29,8 @@ function runApp() {
       'id': 'Pointbreak',
       frame: "none",
       innerBounds: {
-        width: 360,
-        height: 300,
-        left: 600,
-        minWidth: 220,
-        minHeight: 220
+        minWidth: 800,
+        minHeight: 600
       }
     }
   );
