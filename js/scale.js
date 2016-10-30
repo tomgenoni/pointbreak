@@ -31,20 +31,11 @@ function scaleViews() {
   
   webviews.forEach(function(item){
     scaleWebview(item);
-    increaseObjectSize(item)
     reduceContainerSize(item)
   });
     
   function scaleWebview(item) {
     item.style.transform = "scale("+value+")";
-  }
-  
-  function increaseObjectSize(item) {
-    // increase the size of the webview#shadow-root.object
-    var webviewObj = item.shadowRoot.querySelector("object");
-    var webviewGrow = ((1 / parseFloat(value)) * 100) + "%";
-    webviewObj.style.width = webviewGrow;
-    webviewObj.style.height = webviewGrow;
   }
   
   function reduceContainerSize(item) {
