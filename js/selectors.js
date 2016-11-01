@@ -14,6 +14,7 @@ var toolbar = {
 
 // Add New Token Form
 var addNew = {
+  select: qsjs('add-device'),
   form  : qsjs('add-form'),
   button: qsjs('add-new')
 }

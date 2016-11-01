@@ -8,10 +8,10 @@ function init() {
   ]
   
   chrome.storage.sync.get(chromeStorage, function(result){
-
     detectDefaults(result);
-    
   });
+  
+  populateDropdown();
 }
 
 function detectDefaults(result) {
@@ -79,7 +79,7 @@ function setToolbarURL(url) {
 function setSidebarClass() {
  if (sidebarStateStore == "open") {
    body.classList.add('sidebar-active')
- } 
+ }
 }
 
 // Show webview progress loading bar
@@ -222,8 +222,13 @@ function addNewView(e) {
   var webviews = qsa('webview');
   webviews[0].src = toolbar.url.value;
   
+  resetSelect();
   showWebviewLoader();
   savePreferences();
+}
+
+function resetSelect() {
+  addNew.select.selectedIndex = 0;
 }
 
 // Load the URL entered into the URL bar

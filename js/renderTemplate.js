@@ -22,10 +22,8 @@ function renderTemplate(templateName, target, data, type) {
       var template =`
       <div class="view__item is-hidden" data-id="${data[index].id}">
         <div class="view__tools">
-          <div>
             <span class="view__size">${data[index].width}x${data[index].height}</span>
             <span class="view__title">${data[index].title}</span>
-          </div>
         </div>
         <div class="load-indicator"></div>
         <webview src="" class="webview" style="width:${data[index].width}px;height:${data[index].height}px"></webview>

@@ -25,11 +25,13 @@ gulp.task('copy', function () {
 
 gulp.task('js', function() {
   gulp.src([
+    './js/devicesData.js',
     './js/dragula.js',
     './js/defaults.js',
     './js/selectors.js',
     './js/listeners.js',
     './js/functions.js',
+    './js/devicesDropdown.js',
     './js/renderTemplate.js',
     './js/scale.js',
     './js/utility.js'

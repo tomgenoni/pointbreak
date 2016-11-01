@@ -56,12 +56,12 @@
 
 .view__tools {
   padding-bottom: 5px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1.5;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .view__title {
