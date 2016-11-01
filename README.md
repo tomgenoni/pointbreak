@@ -8,7 +8,7 @@ A Chrome app to create custom breakpoints to test against when building websites
 
 ## Usage
 
-- Add custom sizes in the left panel
+- Add custom sizes and reorder them in the left panel
 - When scrolling the stage, as opposed to an individual webview, hold the "shift" key. This prevents the webview from capturing the cursor focus.
 - Pointbreak uses Chrome Sync to remember your state so that when you reopen the app it will load where you left off.
 
