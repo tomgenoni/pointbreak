@@ -1,4 +1,6 @@
-# pointbreak
+# Pointbreak
+
+<img src="http://pointbreak.construction/assets/i/pointbreak-128.png" alt="" width="64" class="intro-logo">
 
 http://pointbreak.construction/
 
