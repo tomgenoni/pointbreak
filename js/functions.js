@@ -203,15 +203,13 @@ function addNewView(e) {
   // Get values for new item to be added
   var newItem = {
     id: guid(),
-    title: newToken.title.value,
-    width: newToken.width.value,
-    height: newToken.height.value
+    title: newToken.title.value.trim(),
+    width: newToken.width.value.trim(),
+    height: newToken.height.value.trim()
   };
   
   // Clear out all form values
-  newToken.title.value  = '';
-  newToken.width.value  = '';
-  newToken.height.value = '';
+  clearAddNewFormValues();
   
   viewStore.push(newItem);
   
@@ -229,6 +227,12 @@ function addNewView(e) {
 
 function resetSelect() {
   addNew.select.selectedIndex = 0;
+}
+
+function clearAddNewFormValues() {
+  newToken.title.value  = '';
+  newToken.width.value  = '';
+  newToken.height.value = '';
 }
 
 // Load the URL entered into the URL bar

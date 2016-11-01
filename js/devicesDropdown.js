@@ -1,19 +1,9 @@
-function cleanHeight(str) {
-  var value = str.replace('× ','');
-  return value.trim();
-}
-
 function populateDropdown() {
-  var html = "";
-  devicesData.entry.forEach(function(item, index){
-    var title = item.title.$t;
-    var width = item.pxscreenw;
-    var height = cleanHeight(item.pxscreenh);
+  devicesData.forEach(function(item, index){
+    var title = item.title;
     
     var el = document.createElement('option');
     el.dataset.title = title;
-    el.dataset.width = width;
-    el.dataset.height = height;
     el.innerText = title;
     el.value = index + 1;
     
@@ -27,9 +17,9 @@ function deviceSelect(){
   
   if ( value > 0 ) {
     var item = value - 1;
-    var title = devicesData.entry[item].title.$t;
-    var width = devicesData.entry[item].pxscreenw;
-    var height = cleanHeight(devicesData.entry[item].pxscreenh);
+    var title = devicesData[item].title;
+    var width = devicesData[item].width;
+    var height = devicesData[item].height;
     
     newToken.width.value = width;
     newToken.height.value = height;
@@ -38,8 +28,6 @@ function deviceSelect(){
     addNewFormValidate();
     
   } else {
-    newToken.width.value = '';
-    newToken.height.value = '';
-    newToken.title.value = '';
+    clearAddNewFormValues();
   }
 }
