@@ -1,6 +1,6 @@
 # Pointbreak
 
-<img src="http://pointbreak.construction/assets/i/pointbreak-128.png" alt="" width="64" class="intro-logo">
+<img src="https://camo.githubusercontent.com/05d507bfa3da05ab2ce7feee823b37b50161af28/687474703a2f2f706f696e74627265616b2e636f6e737472756374696f6e2f6173736574732f692f706f696e74627265616b2d3132382e706e67" alt="" width="64" class="intro-logo">
 
 http://pointbreak.construction/
 
