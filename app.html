@@ -18,11 +18,16 @@
     <div class="sidebar__drag"></div>
     <h3>Scale</h3>
     <div class="scale-wrap">
-      <input id="scale" type="range" max="100" min="50" value="100"/>
+      <input id="scale" type="range" max="100" min="25" value="100"/>
       <div class="scale__value">100%</div>
     </div>
     <h3>New View</h3>
     <form class="add-form" data-js="add-form">
+      <div class="add-device-wrap">
+        <select class="add-device" data-js="add-device">
+          <option value="0">Select device&hellip;</option>
+        </select>
+      </div>
       <ul class="form-list">
         <li class="form-list__item split-input">
           <div class="split-input__item">

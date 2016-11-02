@@ -11,6 +11,7 @@ newToken.width.addEventListener('keyup', addNewFormValidate);
 newToken.height.addEventListener('keyup', addNewFormValidate);
 
 addNew.form.addEventListener('submit', addNewView);
+addNew.select.addEventListener('change', deviceSelect);
 
 
 
