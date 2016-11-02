@@ -211,7 +211,7 @@ function addNewView(e) {
   // Clear out all form values
   clearAddNewFormValues();
   
-  viewStore.push(newItem);
+  viewStore.unshift(newItem);
   
   renderTemplate('tokens', tokens, [newItem], 'prepend');
   renderTemplate('views', views, [newItem], 'prepend', true);
