@@ -8,7 +8,7 @@ A Chrome app to create custom breakpoints to test against when building websites
 
 ## Usage
 
-- Add custom sizes and reorder them in the left panel
+- Add custom sizes and reorder them in the left panel. And though you shouldn't [design to a device](http://thenextweb.com/dd/2015/10/28/9-responsive-design-mistakes-you-dont-want-to-make/) I've added a few popular ones for previews. See Material [Device Metrics](https://material.io/devices/) for full list of device sizes.
 - When scrolling the stage, as opposed to an individual webview, hold the "shift" key. This prevents the webview from capturing the cursor focus.
 - Pointbreak uses Chrome Sync to remember your state so that when you reopen the app it will load where you left off.
 - Try it with [Browsersync](https://www.browsersync.io/) for synced scrolling and auto-injection of CSS.
