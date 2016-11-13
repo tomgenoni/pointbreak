@@ -6,6 +6,8 @@ http://pointbreak.construction/
 
 A Chrome app to create custom breakpoints to test against when building websites. 
 
+<img src="http://pointbreak.construction/assets/i/pointbreak-promo.jpg">
+
 ## Usage
 
 - Add custom sizes and reorder them in the left panel. And though you shouldn't [design to a device](http://thenextweb.com/dd/2015/10/28/9-responsive-design-mistakes-you-dont-want-to-make/) I've added a few popular ones for previews. See Material [Device Metrics](https://material.io/devices/) for full list of device sizes.
