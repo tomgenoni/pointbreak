@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Pointbreak",
   "description": "Create, reorder and scale at your custom breakpoints.",
-  "version": "0.7",
+  "version": "0.8",
   "app": {
     "background": {
       "scripts": ["app.js"]
