@@ -1,77 +1,74 @@
 .views {
-  position: relative;
-  flex: 1;
-  overflow: scroll;
-
-  &:after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,.3);
-    display: none;
-  }
-}
-
-.scroll-shield-active .views:after {
-  display: block;
+    position: relative;
+    flex: 1;
+    overflow: scroll;
 }
 
 .view__item {
-  margin-bottom: 20px;
-  transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1), opacity 1000ms;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 1;
-
-  &.is-hidden {
-    opacity: 0;
-  }
-
-  .icon {
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 200ms;
-  }
-
-  &:hover .icon {
-    opacity: .3;
-    transition: opacity 200ms;
-  }
-
-  // Add some space after the last item so
-  // user can scroll to right with a gutter
-  &:last-child:after {
-    content: '';
+    margin-bottom: 20px;
+    transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1), opacity 1000ms;
     position: absolute;
     top: 0;
-    right: -15px;
-    width: 15px;
-    height: 10px;
-  }
+    left: 0;
+    opacity: 1;
+
+    &.is-hidden {
+        opacity: 0;
+    }
+
+    .icon {
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 200ms;
+    }
+
+    &:hover .icon {
+        opacity: .3;
+        transition: opacity 200ms;
+    }
+
+    // Add some space after the last item so
+    // user can scroll to right with a gutter
+    &:last-child:after {
+        content: '';
+        position: absolute;
+        bottom: -38px;
+        right: -15px;
+        width: 15px;
+        height: 15px;
+    }
+}
+
+// Add cover to each view so user can scroll
+.scroll-shield-active .view__item:before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    z-index: 1;
 }
 
 .view__tools {
-  padding-bottom: 5px;
-  font-size: 11px;
-  line-height: 1.5;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    padding-bottom: 5px;
+    font-size: 11px;
+    line-height: 1.5;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .view__title {
-  opacity: .6;
+    opacity: .6;
 }
 
 .webview {
-  transform-origin: top left;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(10,13,25,0.3);
-  position: relative;
-  -webkit-backface-visibility: hidden;
+    transform-origin: top left;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(10,13,25,0.3);
+    position: relative;
+    -webkit-backface-visibility: hidden;
 }

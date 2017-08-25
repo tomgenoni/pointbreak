@@ -1,52 +1,52 @@
 // On app open
 function init() {
-    
+
   var chromeStorage = [
     'urlStore',
     'viewStore',
     'sidebarStateStore',
   ]
-  
+
   chrome.storage.sync.get(chromeStorage, function(result){
     detectDefaults(result);
   });
-  
+
   populateDropdown();
 }
 
 function detectDefaults(result) {
   // If there are settings previously saved
   // otherwise use the virgin-state data
-    
+
   if ( result.viewStore ) {
     viewStore = result.viewStore;
   } else {
     viewStore = viewStoreVirgin;
   }
-  
+
   if ( result.urlStore ) {
     urlStore = result.urlStore;
   } else {
     urlStore = urlStoreVirgin;
   }
-  
+
   if ( result.sidebarStateStore ) {
     sidebarStateStore = result.sidebarStateStore;
   } else {
     sidebarStateStore = sidebarStateStoreVirgin;
   }
-  
+
   renderTemplate('tokens', tokens, viewStore);
   renderTemplate('views', views, viewStore);
-  
+
   refreshViewOrder();
-  
+
   setViewsURL(urlStore);
   setToolbarURL(urlStore);
   setSidebarClass(sidebarStateStore);
 
   savePreferences();
-  
+
 }
 
 function refreshViewOrder() {
@@ -54,7 +54,7 @@ function refreshViewOrder() {
   var navListItems  = qsa('.tokens .token__item');
   var gap = 15;
   var distance = gap;
-    
+
   navListItems.forEach(function(item){
     var view = qs('.views [data-id="'+item.dataset.id+'"]');
     view.style.transform = 'translateX(' + distance + 'px)';
@@ -91,18 +91,18 @@ function showWebviewLoader() {
 
     indicator.classList.remove('loading');
     indicator.classList.remove('loaded');
-    
+
     var loadstart = function() {
       indicator.classList.add('loading');
       view.parentNode.classList.remove('is-hidden');
       scaleViews();
     }
-    
+
     var loadstop = function() {
       indicator.classList.remove('loading');
       indicator.classList.add('loaded');
     }
-    
+
     // Wait for transition to end, ~500ms
     var transitionEnded = function(event) {
       indicator.classList.remove('loaded');
@@ -110,11 +110,11 @@ function showWebviewLoader() {
     };
 
     indicator.addEventListener('transitionend',transitionEnded, false);
-    
+
     view.addEventListener('loadstart', loadstart);
     view.addEventListener('loadstop', loadstop);
   });
-  
+
 }
 
 
@@ -151,12 +151,12 @@ function tokenClick(e) {
 function deleteItem(deletedID) {
   // Get all items that match the ID
   var itemsToDelete = qsa('[data-id="'+deletedID+'"]');
-  
+
   // Delete all items that match on ID
   itemsToDelete.forEach(function(node){
     node.parentNode.removeChild(node);
   })
-  
+
   // Remove deleted item from preferences object
   viewStore.forEach(function(item, index){
     if ( deletedID == item.id ) {
@@ -169,9 +169,9 @@ function deleteItem(deletedID) {
 }
 
 function addNewFormValidate() {
-  
+
   var error = false;
-  
+
   var inputsToCheck = [
     newToken.width.value,
     newToken.height.value
@@ -190,16 +190,16 @@ function addNewFormValidate() {
 }
 
 function addNewView(e) {
-  
+
   e.preventDefault();
-    
+
   addNew.button.setAttribute('disabled', 'disabled');
-  
+
   // Title is not required
   if ( newToken.title.value == '') {
     newToken.title.value = 'Custom';
   }
-  
+
   // Get values for new item to be added
   var newItem = {
     id: guid(),
@@ -207,19 +207,19 @@ function addNewView(e) {
     width: newToken.width.value.trim(),
     height: newToken.height.value.trim()
   };
-  
+
   // Clear out all form values
   clearAddNewFormValues();
-  
+
   viewStore.unshift(newItem);
-  
+
   renderTemplate('tokens', tokens, [newItem], 'prepend');
   renderTemplate('views', views, [newItem], 'prepend', true);
-  
+
   // Set first URL in stack to new webview
   var webviews = qsa('webview');
   webviews[0].src = toolbar.url.value;
-  
+
   resetSelect();
   showWebviewLoader();
   savePreferences();
@@ -238,15 +238,15 @@ function clearAddNewFormValues() {
 // Load the URL entered into the URL bar
 function loadURL(e) {
   e.preventDefault();
-  
+
   // Clean the url if it's missing http
   var url = urlClean(toolbar.url.value);
   toolbar.url.value = url;
   urlStore = url;
-  
+
   setViewsURL(url)
   showWebviewLoader();
-  
+
   savePreferences();
 }
 
@@ -266,7 +266,7 @@ function toggleSidebar() {
 // swallowed by the webviews
 function scrollSheild(e) {
   body.classList.remove('scroll-shield-active');
-   if (e.shiftKey) {
+   if (e.altKey) {
      body.classList.add('scroll-shield-active');
    }
 }
