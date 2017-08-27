@@ -11,6 +11,8 @@
     top: 0;
     left: 0;
     opacity: 1;
+    display: flex;
+    flex-direction: column;
 
     &.is-hidden {
         opacity: 0;
@@ -59,6 +61,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex: none;
 }
 
 .view__title {
@@ -66,9 +69,18 @@
 }
 
 .webview {
+    flex: 1;
     transform-origin: top left;
     background: #fff;
     box-shadow: 0 1px 3px rgba(10,13,25,0.3);
     position: relative;
     -webkit-backface-visibility: hidden;
+}
+
+.item-full-height-active {
+
+    .webview {
+        flex: 1;
+        height: 0 !important;
+    }
 }

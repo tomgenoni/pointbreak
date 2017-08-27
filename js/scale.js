@@ -26,27 +26,35 @@ function scaleViews() {
   var webviews = document.querySelectorAll("webview");
   body.dataset.scale = value;
   scaleValue.innerHTML = (parseFloat(value) * 100).toFixed(0) + "%";
-  
+
   refreshViewOrder();
-  
+
   webviews.forEach(function(item){
     scaleWebview(item);
     reduceContainerSize(item)
   });
-    
+
   function scaleWebview(item) {
     item.style.transform = "scale("+value+")";
   }
-  
+
   function reduceContainerSize(item) {
     // descrease the size of the container
     // good christ this is ridiculous
     var viewItem = item.parentNode;
+    var viewItemFullHeightState = body.classList.contains('item-full-height-active');
+
     var itemWidth = parseFloat(item.style.width);
-    var itemHeight= parseFloat(item.style.height);
     viewItemWidthShrink = (parseFloat(value) * itemWidth) + "px";
-    viewItemHeightShrink = (parseFloat(value) * itemHeight) + "px";
     viewItem.style.width = viewItemWidthShrink;
-    viewItem.style.height = viewItemHeightShrink;
+
+    if (viewItemFullHeightState) {
+        viewItem.style.height = "calc(100% - 15px)";
+    } else {
+        var itemHeight = parseFloat(item.style.height);
+        viewItemHeightShrink = (parseFloat(value) * itemHeight) + "px";
+        viewItem.style.height = viewItemHeightShrink;
+
+    }
   }
 }
