@@ -56,7 +56,6 @@ function scaleViews() {
         var itemHeight = parseFloat(item.style.height);
         viewItemHeightShrink = (parseFloat(value) * itemHeight) + "px";
         viewItem.style.height = viewItemHeightShrink;
-
     }
   }
 }
