@@ -18,14 +18,14 @@
     -webkit-appearance: none;
     outline: none;
     position: relative;
-    
+
     &:last-child {
       margin-right: 0;
     }
   }
-  
+
   &:hover {
-    
+
     .window--close {
       &:before,
       &:after {
@@ -38,12 +38,12 @@
         top: 1px;
         left: 4px;
       }
-      
+
       &:after {
         transform: rotate(-45deg);
       }
     }
-    
+
     .window--min {
       &:before{
         content: '';
@@ -55,7 +55,7 @@
         left: 1px;
       }
     }
-    
+
     .window--max {
       &:before,
       &:after {
@@ -70,7 +70,7 @@
         top: 2px;
         right: 0px;
       }
-      
+
       &:after {
         transform: rotate(225deg);
         position: absolute;
@@ -78,6 +78,5 @@
         right: 4px;
       }
     }
-    
   }
 }

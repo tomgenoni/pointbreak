@@ -42,15 +42,26 @@
 }
 
 // Add cover to each view so user can scroll
-.scroll-shield-active .view__item:before {
-    content: '';
-    position: absolute;
-    top: 24px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,.5);
-    z-index: 1;
+.scroll-shield-active {
+
+    .view__item:before {
+        content: '';
+        position: absolute;
+        top: 24px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.5);
+        z-index: 1;
+    }
+
+    &.item-full-height-active {
+
+        .view__item:before {
+            bottom: 0;
+            height: auto;
+        }
+    }
 }
 
 .view__tools {
