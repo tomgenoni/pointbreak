@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="pointbreak.css">
   <link rel="import" href="symbol/svg/sprite.symbol.svg" data-js="svg-sprite">
 </head>
-<body data-scale="1" class="item-full-height-active">
+<body data-scale="1">
 
   <div class="window-tools">
     <button class="window window--close" data-js="window-close"></button>
@@ -46,6 +46,10 @@
       </ul>
     </form>
     <h3>Views</h3>
+    <div class="height-input">
+        <input type="checkbox" id="full-height-views" data-js="full-height-views">
+        <label for="full-height-views">Full height</label>
+    </div>
     <div class="tokens" data-js="tokens"></div>
   </div>
 

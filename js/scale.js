@@ -49,7 +49,9 @@ function scaleViews() {
     viewItem.style.width = viewItemWidthShrink;
 
     if (viewItemFullHeightState) {
-        viewItem.style.height = "calc(100% - 15px)";
+        var fullHeightMargin = (1 / value ) * 30 - (15 * value);
+        var fullHeightPercentage = 1 / value * 100;
+        viewItem.style.height = "calc("+fullHeightPercentage+"% - " + fullHeightMargin + "px)";
     } else {
         var itemHeight = parseFloat(item.style.height);
         viewItemHeightShrink = (parseFloat(value) * itemHeight) + "px";

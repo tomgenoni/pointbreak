@@ -262,6 +262,12 @@ function toggleSidebar() {
   savePreferences();
 }
 
+// Show/hide sidebar
+function toggleViewHeight() {
+  body.classList.toggle('item-full-height-active');
+  scaleViews();
+}
+
 // Add transparent cover to views so scroll in app is not
 // swallowed by the webviews
 function scrollSheild(e) {

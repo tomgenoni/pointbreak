@@ -13,7 +13,7 @@ newToken.height.addEventListener('keyup', addNewFormValidate);
 addNew.form.addEventListener('submit', addNewView);
 addNew.select.addEventListener('change', deviceSelect);
 
-
+sidebar.viewHeight.addEventListener('change', toggleViewHeight);
 
 // Window Controls
 var win = chrome.app.window.current();
