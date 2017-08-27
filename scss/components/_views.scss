@@ -5,7 +5,6 @@
 }
 
 .view__item {
-    margin-bottom: 20px;
     transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1), opacity 1000ms;
     position: absolute;
     top: 0;
@@ -31,13 +30,19 @@
 
     // Add some space after the last item so
     // user can scroll to right with a gutter
-    &:last-child:after {
+    &:after {
         content: '';
         position: absolute;
         bottom: -38px;
         right: -15px;
         width: 15px;
         height: 15px;
+    }
+}
+
+.item-full-height-active {
+    .view__item:after {
+        bottom: 0;
     }
 }
 
