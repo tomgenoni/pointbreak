@@ -5,7 +5,9 @@
 }
 
 .view__item {
-    transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1), opacity 1000ms;
+    transition: transform 300ms cubic-bezier(0.1, -0.1, 0.1, 1.1),
+        opacity 1000ms,
+        height 150ms;
     position: absolute;
     top: 0;
     left: 0;
